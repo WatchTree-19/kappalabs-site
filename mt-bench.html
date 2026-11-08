@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MT-Bench · Kappa Labs public audit</title>
+<meta name="description" content="What MT-Bench&#x27;s famous over-80% judge agreement counts: the figures reproduce exactly, most of the 85% comes from which chatbots are compared, and it covers two thirds of the comparisons.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%23f4f4f0'/%3E%3Cg transform='translate(3.2 3.0) scale(0.76)'%3E%3Cpath transform='translate(2.0 23.0) scale(0.02778 -0.02778)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%230f1012' stroke='%230f1012' stroke-width='10' stroke-linejoin='round'/%3E%3Ccircle cx='22.4' cy='21.0' r='2.2' fill='%232b45d4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://kappalabs.co.uk/mt-bench">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/mt-bench">
+<meta property="og:title" content="&quot;Over 80% agreement&quot;: what MT-Bench&#x27;s famous judge number counts">
+<meta property="og:description" content="What MT-Bench&#x27;s famous over-80% judge agreement counts: the figures reproduce exactly, most of the 85% comes from which chatbots are compared, and it covers two thirds of the comparisons.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root { --bg:#f4f4f0; --surface:#fff; --ink:#0f1012; --ink-2:#4b4f56; --ink-3:#868b93; --line:#e1e1da; --accent:#2b45d4; --accent-soft:#c9cff0;
+  --sans:"Geist","Helvetica Neue",Helvetica,Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.gut { padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1200px; margin:0 auto; }
+a { color:inherit; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+.brand { display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:17px; letter-spacing:-0.02em; text-decoration:none; }
+.back { font-size:14.5px; color:var(--ink-2); text-decoration:none; }
+.back:hover { color:var(--ink); }
+article { max-width:44rem; margin:clamp(40px,7vw,88px) auto clamp(64px,9vw,120px); }
+.kicker { font:500 13px/1.4 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:0 0 18px; order:-1; }
+h1 { font-size:clamp(34px,5vw,54px); line-height:1.06; font-weight:400; letter-spacing:-0.03em; margin:0 0 20px; text-wrap:balance; }
+h2 { font-size:26px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px; }
+article p { margin:0 0 18px; color:var(--ink-2); }
+article p strong { color:var(--ink); font-weight:500; }
+article a { text-decoration:underline; text-decoration-color:var(--accent-soft); text-underline-offset:3px; text-decoration-thickness:1.5px; overflow-wrap:anywhere; }
+article a:hover { text-decoration-color:var(--accent); }
+.note { font-size:14.5px; color:var(--ink-3) !important; }
+.note em { font-style:normal; }
+.tbl { overflow-x:auto; margin:8px 0 14px; border-top:1px solid var(--ink); }
+table { width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-weight:500; font-size:13px; color:var(--ink-3); padding:12px 12px 10px 0; border-bottom:1px solid var(--line); vertical-align:bottom; }
+td { padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink-2); }
+td:first-child { color:var(--ink); }
+th:not(:first-child), td:not(:first-child) { text-align:right; }
+.fine { padding-block:20px 40px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-3); }
+.fine a { text-decoration:none; }
+
+</style>
+</head>
+<body>
+<div class="gut"><div class="wrap">
+<header class="nav"><a class="brand" href="./" aria-label="Kappa Labs home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>Kappa Labs</a><a class="back" href="./#audits">&larr; All public audits</a></header>
+<main><article>
+<p class="kicker">Kappa Labs public audit no. 2 · November 2026</p>
+<h1>"Over 80% agreement": what MT-Bench's famous judge number counts</h1>
+<p>MT-Bench is where "LLM as a judge" became standard practice. Its paper (Zheng et al., NeurIPS 2023) reports that GPT-4, judging which of two chatbot answers is better, agrees with expert humans "over 80%" of the time, the same as experts agree with each other. LMSYS released every vote behind that figure, 3,355 human judgments (2,668 from the expert raters behind the headline) and 2,400 GPT-4 verdicts across 80 questions, which is exactly what makes a check like this possible. Credit to them for that. The paper reports the answer-order effect itself (section 3.3) and states the tie rule under Table 5.</p>
+<h2>What we found</h2>
+<p><strong>1. The published figures reproduce exactly.</strong> Every agreement rate and every vote count in the paper's Table 5 comes out of the released data to the vote.</p>
+<p><strong>2. Most of the 85% comes from which chatbots are being compared.</strong> MT-Bench pits strong models against much weaker ones. A rule that never reads the answers, and simply picks whichever chatbot the experts preferred on the other 79 questions, matches the experts 81% of the time on the same cases. GPT-4 reaches 85%, so reading the answers adds about 4 points (95% interval 2 to 6).</p>
+<p><strong>3. The 85% is measured on two thirds of the comparisons.</strong> The figure leaves out every case where either side called a tie. That includes the 380 of 2,400 cases (16%) where GPT-4's verdict changed once the two answers swapped places, which the paper counts as a tie. Together these remove 35% of the GPT-4 and expert comparisons, and they are cases the experts themselves agree on less. Where GPT-4's verdict flipped with the answer order, the experts agree with each other on 53% of pairs, against 68% where GPT-4 gave a clear verdict.</p>
+<p><strong>4. Scoring those cases, GPT-4 matches the experts' clear verdicts 70% of the time</strong> (95% interval 66% to 73%). That counts a tie or a self-contradiction from GPT-4 as a miss whenever the expert picked a winner. One expert matches another's clear verdict on exactly the same terms 70% of the time too.</p>
+<p><strong>5. "The same level as humans" holds on equal terms.</strong> The paper's table sets GPT-4's 85% beside the experts' 81%, but the two cover different cases. On the same cases, GPT-4 agrees with the experts 85% of the time and the experts agree with each other 83%: a gap of +1.6 points (95% interval −1.4 to +4.8).</p>
+<div class="tbl"><table><thead><tr><th></th><th>Cases where GPT-4 gave a clear verdict</th><th>Every case where the expert picked a winner (ties count as misses)</th></tr></thead><tbody><tr><td>GPT-4</td><td>85%</td><td>70%</td></tr><tr><td>Experts with each other</td><td>83%</td><td>70%</td></tr><tr><td>Pick the chatbot experts prefer elsewhere, without reading the answers</td><td>81%</td><td></td></tr></tbody></table></div>
+<p class="note"><em>Intervals resample whole questions, so they allow for the 80 questions each carrying many votes.</em></p>
+<h2>Why it matters</h2>
+<p>"Our judge agrees with humans X% of the time" is the sentence that sells most automated evaluations. MT-Bench shows the claim can be true and still say less than it seems: what matters is how many cases it was computed on, how the judge and the humans did on the rest, and how far the judge beats a rule that never looks at the answers. Those three numbers are worth asking for alongside any judge's agreement figure.</p>
+<p class="note"><em>Kappa Labs runs independent audits of AI evaluation scores. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></em></p>
+<p class="note"><em>Data: lmsys/mt_bench_human_judgments on Hugging Face, CC BY 4.0. Paper: Zheng et al., "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena", NeurIPS 2023 Datasets and Benchmarks, <a href="https://arxiv.org/abs/2306.05685">arXiv 2306.05685</a> (v4, Table 5).</em></p>
+</article></main>
+<footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
+</div></div>
+</body>
+</html>

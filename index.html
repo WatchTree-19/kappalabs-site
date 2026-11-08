@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kappa Labs: independent assurance for AI evaluations</title>
+<meta name="description" content="Kappa Labs checks AI evaluations and their scoring, improves them, and certifies the figure you can quote, with its margin. Public audits of widely used benchmarks.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%23f4f4f0'/%3E%3Cg transform='translate(3.2 3.0) scale(0.76)'%3E%3Cpath transform='translate(2.0 23.0) scale(0.02778 -0.02778)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%230f1012' stroke='%230f1012' stroke-width='10' stroke-linejoin='round'/%3E%3Ccircle cx='22.4' cy='21.0' r='2.2' fill='%232b45d4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://kappalabs.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/">
+<meta property="og:title" content="Kappa Labs: every AI score has a judge. We check the judge.">
+<meta property="og:description" content="Kappa Labs checks AI evaluations and their scoring, improves them, and certifies the figure you can quote, with its margin. Public audits of widely used benchmarks.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kappa Labs: every AI score has a judge. We check the judge.">
+<meta name="twitter:description" content="Kappa Labs checks AI evaluations and their scoring, improves them, and certifies the figure you can quote, with its margin. Public audits of widely used benchmarks.">
+<meta name="twitter:image" content="https://kappalabs.co.uk/og.png">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: company landing page. Hero pairs the line with a live instrument: 300 real attempts, re-marked by each judge.
+   Then who we work with, how an engagement runs (with the report it produces), public audits, a regulated-industry band,
+   research, a plain team note, contact, footer. Single light theme by design. */
+:root {
+  --bg: #f4f4f0;
+  --surface: #ffffff;
+  --ink: #0f1012;
+  --ink-2: #4b4f56;
+  --ink-3: #868b93;
+  --line: #e1e1da;
+  --accent: #2b45d4;
+  --accent-soft: #c9cff0;
+  --night: #0f1012;
+  --night-2: #1a1c20;
+  --night-line: #2c2f35;
+  --trusted: #1c7a4a;   --trusted-bg: #e2f3e9;
+  --qualified: #94620a; --qualified-bg: #fbf0d9;
+  --unsupported: #b2362f; --unsupported-bg: #fbe4e1;
+  --sans: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.gut { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1200px; margin: 0 auto; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+p { margin: 0; }
+em.s { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+.announce { background: var(--ink); color: #e9e9e4; font-size: 13.5px; text-align: center; padding-block: 9px; }
+.announce a { color: #fff; text-decoration: none; }
+.announce a span { opacity: .7; }
+.announce a:hover span { opacity: 1; }
+
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 18px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+.links { display: flex; align-items: center; gap: 28px; font-size: 14.5px; }
+.links a { text-decoration: none; color: var(--ink-2); }
+.links a:hover { color: var(--ink); }
+.links a.btn-dark, .links a.btn-dark:hover { color: #fff; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 500 14.5px/1 var(--sans); text-decoration: none; border-radius: 999px; padding: 12px 20px; border: 1px solid transparent; cursor: pointer; white-space: nowrap; }
+.btn-dark { background: var(--ink); color: #fff; }
+.btn-dark:hover { background: #2a2c31; }
+.btn-line { border-color: #c9c9c2; color: var(--ink); background: transparent; }
+.btn-line:hover { border-color: var(--ink); }
+.btn-light { background: #fff; color: var(--ink); }
+@media (max-width: 860px) { .links .hide-m { display: none; } .links { gap: 16px; } }
+
+/* hero */
+.hero { padding-block: 64px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.hero > * { min-width: 0; }
+.hero h1 { font-size: clamp(42px, 6vw, 80px); line-height: 1.0; letter-spacing: -0.035em; font-weight: 300; }
+.hero h1 em.s { font-size: 1.06em; }
+.hero .sub { font-size: clamp(17px, 1.5vw, 19px); color: var(--ink-2); max-width: 32rem; line-height: 1.5; margin-top: 24px; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+@media (max-width: 960px) { .hero { grid-template-columns: minmax(0, 1fr); } }
+
+/* instrument */
+.inst { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: 0 24px 60px -30px rgba(15,16,18,.25); display: grid; gap: 16px; }
+.inst-top { display: grid; gap: 14px; }
+.readout .k { font: 12px var(--mono); color: var(--ink-3); }
+.readout .big { font-size: clamp(48px, 6vw, 72px); font-weight: 300; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.readout .big small { font-size: .45em; letter-spacing: 0; color: var(--ink-3); }
+.readout .by { font-size: 14px; color: var(--ink-2); margin-top: 6px; min-height: 3em; max-width: 34rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12.5px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.lg-p { background: var(--accent); } .lg-n { background: #e7e7e1; } .lg-x { border: 1.5px dashed #b9bab3; }
+.dots { display: grid; grid-template-columns: repeat(25, 1fr); gap: 4px; }
+.dots i { aspect-ratio: 1; border-radius: 3px; background: #e7e7e1; transition: background-color .35s ease, border-color .35s ease, transform .35s ease; border: 1.5px solid transparent; }
+.dots i.p { background: var(--accent); }
+.dots i.x { background: transparent; border: 1.5px dashed #b9bab3; }
+.judges { display: flex; flex-wrap: wrap; gap: 6px; }
+.judges button { font: 500 12.5px/1 var(--sans); padding: 8px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink-2); cursor: pointer; }
+.judges button:hover { border-color: #b9bab3; color: var(--ink); }
+.judges button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.judges button.hum[aria-pressed="false"] { border-color: var(--ink); color: var(--ink); }
+.inst .cap { font-size: 12.5px; color: var(--ink-3); }
+
+/* name strip */
+.strip { padding-block: 36px 8px; display: grid; gap: 16px; }
+.strip p { font-size: 13.5px; color: var(--ink-3); }
+.names { display: flex; flex-wrap: wrap; gap: 14px 44px; align-items: baseline; }
+.names span { font-size: clamp(17px, 2vw, 22px); font-weight: 500; letter-spacing: -0.02em; color: #6c7078; white-space: nowrap; }
+.names span em { font-style: normal; font-weight: 400; color: #9a9ea5; margin-left: 6px; font-size: .8em; }
+
+.sec { padding-block: clamp(72px, 10vw, 120px); }
+.h2 { font-size: clamp(32px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 300; }
+.lead { font-size: 18px; color: var(--ink-2); max-width: 34rem; line-height: 1.55; }
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.split > div { display: grid; gap: 22px; align-content: start; min-width: 0; }
+@media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+
+/* who */
+.who { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--ink); margin-top: 56px; }
+.who > div { padding: 26px 28px 30px 0; display: grid; gap: 10px; align-content: start; border-bottom: 1px solid var(--line); }
+.who > div:not(:nth-child(3n+1)) { padding-left: 28px; border-left: 1px solid var(--line); }
+.who h3 { font-size: 21px; font-weight: 500; letter-spacing: -0.015em; }
+.who p { color: var(--ink-2); font-size: 15px; }
+.who .ex { font: 12.5px var(--mono); color: var(--ink-3); }
+@media (max-width: 900px) { .who { grid-template-columns: 1fr 1fr; } .who > div:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; } .who > div:nth-child(2n) { padding-left: 24px; border-left: 1px solid var(--line); } }
+@media (max-width: 600px) { .who { grid-template-columns: 1fr; } .who > div:nth-child(2n) { padding-left: 0; border-left: 0; } }
+
+/* approach */
+.band { background: var(--surface); border-block: 1px solid var(--line); }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(24px, 4vw, 56px); margin-top: 56px; }
+.step { display: grid; gap: 14px; align-content: start; }
+.step .n { font: 13px var(--mono); color: var(--accent); }
+.step h3 { font-size: 34px; letter-spacing: -0.02em; font-family: var(--serif); font-style: italic; }
+.step p { color: var(--ink-2); }
+.step .bar { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.step .bar i { display: block; height: 100%; background: var(--accent); }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+
+/* product shot */
+.shot { margin-top: 64px; display: grid; gap: 14px; }
+.shot .label { font-size: 14px; color: var(--ink-3); }
+.window { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 24px 60px -28px rgba(15,16,18,.22); overflow: hidden; min-width: 0; }
+.chrome { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--line); font: 12.5px var(--mono); color: var(--ink-3); background: #fbfbf9; }
+.tl { display: inline-flex; gap: 6px; } .tl i { width: 10px; height: 10px; border-radius: 50%; background: #dedcd5; display: block; }
+.chrome .path { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.report { display: grid; grid-template-columns: minmax(0,1fr) 340px; }
+.rmain { padding: 28px 30px 30px; display: grid; gap: 20px; min-width: 0; }
+.rhead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.rhead > * { min-width: 0; }
+.rtitle { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; }
+.rmeta { font: 12.5px var(--mono); color: var(--ink-3); margin-top: 3px; }
+.pill { display: inline-block; font: 500 11.5px/1 var(--mono); letter-spacing: .04em; padding: 6px 9px; border-radius: 6px; white-space: nowrap; }
+.p-t { color: var(--trusted); background: var(--trusted-bg); }
+.p-q { color: var(--qualified); background: var(--qualified-bg); }
+.p-n { color: var(--unsupported); background: var(--unsupported-bg); }
+.pill.big { font-size: 13px; padding: 9px 12px; }
+.rows { display: grid; border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: 130px 140px minmax(0,1fr); gap: 16px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.row .dim { font-weight: 500; }
+.row .why { color: var(--ink-2); }
+.rside { border-left: 1px solid var(--line); background: #fafaf8; padding: 24px; display: grid; gap: 14px; align-content: start; }
+.cert { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 10px; position: relative; }
+.cert::before { content: ""; position: absolute; inset: 5px; border: 1px solid var(--line); border-radius: 7px; pointer-events: none; }
+.cert .ck { font: 11.5px var(--mono); color: var(--ink-3); display: flex; justify-content: space-between; gap: 8px; }
+.cert .fig { font-size: 30px; letter-spacing: -0.03em; line-height: 1; }
+.cert .rng { font: 12.5px var(--mono); color: var(--ink-2); }
+.cert .cond { font-size: 12.5px; color: var(--ink-2); border-top: 1px dashed var(--line); padding-top: 10px; }
+.note { font-size: 12px; color: var(--ink-3); }
+@media (max-width: 900px) { .report { grid-template-columns: 1fr; } .rside { border-left: 0; border-top: 1px solid var(--line); } .row { grid-template-columns: 1fr auto; } .row .why { grid-column: 1 / -1; } }
+
+/* public audits */
+.audits { margin-top: 56px; border-top: 1px solid var(--ink); }
+.audit { display: grid; grid-template-columns: 64px minmax(0, 2.2fr) minmax(0, 3fr) 150px; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.audit .no { font: 13px var(--mono); color: var(--ink-3); padding-top: 4px; }
+.audit h3 { font-size: 22px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.25; }
+.audit .src { font-size: 14px; color: var(--ink-3); margin-top: 4px; }
+.audit .res { color: var(--ink-2); font-size: 15.5px; }
+.audit .res b { font-weight: 500; color: var(--ink); }
+.audit .alink { text-decoration: none; }
+.audit .alink:hover { text-decoration: underline; text-decoration-color: var(--accent-soft); text-underline-offset: 4px; }
+.audit .more { display: inline-block; margin-top: 6px; color: var(--ink); font-weight: 500; text-decoration: none; white-space: nowrap; }
+.audit .more:hover { color: var(--accent); }
+.status { justify-self: end; font: 500 12px/1 var(--mono); padding: 7px 10px; border-radius: 999px; white-space: nowrap; }
+.st-pub { background: var(--ink); color: #fff; }
+.st-rev { border: 1px solid #c9c9c2; color: var(--ink-2); }
+@media (max-width: 860px) { .audit { grid-template-columns: 40px minmax(0,1fr); } .audit .res, .status { grid-column: 2; } .status { justify-self: start; } }
+
+/* dark band */
+.dark { background: var(--night); color: #ecece7; }
+.dark .h2 { color: #fff; }
+.dark .lead { color: #b5b8be; }
+.regs { display: grid; border-top: 1px solid var(--night-line); }
+.reg { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--night-line); }
+.reg span { font: 12.5px var(--mono); color: #8d9198; padding-top: 2px; }
+.reg p { color: #d7d8d3; }
+@media (max-width: 560px) { .reg { grid-template-columns: 1fr; gap: 6px; } }
+
+/* research */
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin-top: 48px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; display: grid; grid-template-rows: auto 1fr; transition: border-color .15s; }
+.card:hover { border-color: #bdbdb5; }
+.thumb { background: #efefea; border-bottom: 1px solid var(--line); aspect-ratio: 16 / 7; max-width: 100%; display: block; }
+.thumb svg { width: 100%; height: 100%; display: block; }
+.cbody { padding: 22px; display: grid; gap: 8px; align-content: start; }
+.cbody .k { font: 12px var(--mono); color: var(--ink-3); }
+.cbody h3 { font-size: 21px; letter-spacing: -0.015em; font-weight: 500; line-height: 1.25; }
+.cbody p { color: var(--ink-2); font-size: 15px; }
+.cbody .go { font-size: 14px; color: var(--accent); margin-top: 6px; }
+@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
+
+/* team */
+.team { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 80px); padding-block: 0 clamp(72px, 10vw, 120px); }
+.person { display: flex; gap: 18px; align-items: flex-start; }
+.mono-av { flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); display: grid; place-items: center; font-family: var(--serif); font-style: italic; font-size: 22px; }
+.person h3 { font-size: 18px; font-weight: 500; }
+.person .role { font-size: 13px; color: var(--ink-3); margin-bottom: 8px; }
+.person p { color: var(--ink-2); font-size: 15.5px; max-width: 38rem; }
+@media (max-width: 900px) { .team { grid-template-columns: 1fr; } }
+.record > div:last-child { display: grid; gap: 16px; max-width: 40rem; }
+.record p { color: var(--ink-2); font-size: clamp(16px, 1.4vw, 18px); line-height: 1.6; }
+.record a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent-soft); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.record a:hover { text-decoration-color: var(--accent); }
+
+.close { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: clamp(32px, 6vw, 72px); display: grid; gap: 24px; justify-items: start; }
+.mail { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.addr { font: 15px var(--mono); padding: 12px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); user-select: all; text-decoration: none; }
+.copied { font-size: 13.5px; color: var(--trusted); min-height: 1.2em; }
+
+footer { padding-block: 64px 48px; }
+.fgrid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 32px; }
+.fgrid h4 { margin: 0 0 12px; font-size: 13px; font-weight: 500; color: var(--ink-3); }
+.fgrid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14.5px; color: var(--ink-2); }
+.fgrid a { text-decoration: none; color: var(--ink-2); }
+.fgrid a:hover { color: var(--ink); }
+.fine { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--ink-3); }
+@media (max-width: 760px) { .fgrid { grid-template-columns: 1fr 1fr; } .fgrid > :first-child { grid-column: 1 / -1; } }
+</style>
+
+</head>
+<body>
+<div class="announce gut">
+  <a href="https://doi.org/10.5281/zenodo.23955858">New research: Headline AI Numbers Hide Disagreement <span>&nbsp;Read the paper &rarr;</span></a>
+</div>
+
+<div class="gut">
+  <div class="wrap">
+    <header class="nav">
+      <a class="brand" href="#top" aria-label="Kappa Labs">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>
+        Kappa Labs
+      </a>
+      <nav class="links" aria-label="Main">
+        <a class="hide-m" href="#who">Who we work with</a>
+        <a class="hide-m" href="#approach">Approach</a>
+        <a class="hide-m" href="#audits">Public audits</a>
+        <a class="hide-m" href="#research">Research</a>
+        <a class="btn btn-dark" href="#contact">Discuss your evaluation</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div>
+          <h1>Every AI score has a judge. <em class="s">We check the judge.</em></h1>
+          <p class="sub">Kappa Labs finds where AI evaluations and their scoring go wrong, fixes them, and certifies the figure you can safely quote, with its margin.</p>
+          <div class="ctas">
+            <a class="btn btn-dark" href="#contact">Discuss your evaluation</a>
+            <a class="btn btn-line" href="#audits">See our public audits</a>
+          </div>
+        </div>
+
+        <div class="inst" id="inst">
+          <div class="inst-top">
+            <div class="readout">
+              <div class="k">JailbreakBench &middot; attack success rate</div>
+              <div class="big"><span id="pct">36.7</span><small>%</small></div>
+              <div class="by" id="by">Marked by the human raters</div>
+            </div>
+            <div class="legend" aria-hidden="true">
+              <span><i class="lg-p"></i>Judged successful</span>
+              <span><i class="lg-n"></i>Judged failed</span>
+              <span><i class="lg-x"></i>Judge declined to grade</span>
+            </div>
+          </div>
+          <div class="dots" id="dots" role="img" aria-label="300 jailbreak attempts, shaded by the selected judge's verdict"></div>
+          <div class="judges" id="judges" role="group" aria-label="Choose who marks the attempts"></div>
+          <p class="cap">The same 300 public jailbreak attempts, marked by three human raters and eight AI judges. Each square is one attempt; the counts are exact, the order is not.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="who">
+        <div class="split">
+          <div><h2 class="h2">Wherever an AI number is quoted, <em class="s">someone needs it to hold.</em></h2></div>
+          <div><p class="lead">The people who publish AI scores and the people who rely on them face the same question: does the number survive an outside check? We work on both sides.</p></div>
+        </div>
+        <div class="who">
+          <div><h3>AI labs and model developers</h3><p>Check safety and capability numbers before a release, so the figure in the model card holds when others rerun it.</p><span class="ex">Pre-release evaluation review</span></div>
+          <div><h3>AI product companies</h3><p>A certificate on the accuracy or safety claim you put in front of customers, procurement teams and regulators.</p><span class="ex">Vendor claim certification</span></div>
+          <div><h3>Banks and insurers</h3><p>Independent evidence on the AI your model-risk team approves, whether you built it or bought it.</p><span class="ex">Model validation evidence</span></div>
+          <div><h3>Benchmark builders</h3><p>Check labels, judges and scoring code before a leaderboard goes public and everyone starts quoting it.</p><span class="ex">Benchmark release audit</span></div>
+          <div><h3>Governments and safety institutes</h3><p>Independent review of the evaluations behind procurement, policy and public safety reporting.</p><span class="ex">Evaluation assurance</span></div>
+          <div><h3>Universities and research groups</h3><p>Replication of published judge and benchmark results, and help designing evaluations that hold up.</p><span class="ex">Replication studies</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<section class="band gut" id="approach">
+  <div class="wrap sec">
+    <div class="split">
+      <div><h2 class="h2">Find, fix, certify.</h2></div>
+      <div><p class="lead">One engagement, about four weeks, from the record your evaluation already produced. We never need your model, your systems, credentials or customer data.</p></div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="bar"><i style="width:33%"></i></div><span class="n">Weeks 1&ndash;2</span><h3>Find</h3><p>We check the evaluation behind your figure: the test itself, the human labels it is scored against, the AI judge, and the code that reads the judge's reply.</p></div>
+      <div class="step"><div class="bar"><i style="width:66%"></i></div><span class="n">Weeks 2&ndash;3</span><h3>Fix</h3><p>You get a fix list ordered by what holds the figure back, and we work through it with your team, then re-score.</p></div>
+      <div class="step"><div class="bar"><i style="width:100%"></i></div><span class="n">Week 4</span><h3>Certify</h3><p>We repeat the full audit on the revised record and, where the grade earns one, issue a numbered certificate with the figure that can safely be quoted and its margin.</p></div>
+    </div>
+
+    <div class="shot">
+      <p class="label">What you receive: a graded report, and a certificate where the grade earns one. Shown on public data.</p>
+      <div class="window" role="img" aria-label="A Kappa Labs audit report on JailbreakBench, graded NOT SUPPORTED overall, beside an example certificate graded QUALIFIED.">
+        <div class="chrome"><span class="tl"><i></i><i></i><i></i></span><span class="path">Kappa Labs &middot; Measurement audit &middot; jailbreakbench-judges / report</span></div>
+        <div class="report">
+          <div class="rmain">
+            <div class="rhead">
+              <div>
+                <div class="rtitle">JailbreakBench judge comparison, ten graders</div>
+                <div class="rmeta">300 attempts &middot; 3 human raters &middot; ten AI graders &middot; public data</div>
+              </div>
+              <span class="pill big p-n">NOT SUPPORTED</span>
+            </div>
+            <div class="rows">
+              <div class="row"><span class="dim">Ground truth</span><span><span class="pill p-q">QUALIFIED</span></span><span class="why">Rater agreement is good (alpha 0.84), but 11.0% of items are contested.</span></div>
+              <div class="row"><span class="dim">Judges</span><span><span class="pill p-n">NOT SUPPORTED</span></span><span class="why">Claude Opus 5.5 declined to grade 39% of calls, mostly on the attacks that worked (71% against 20%).</span></div>
+              <div class="row"><span class="dim">Scoring code</span><span><span class="pill p-t">TRUSTED</span></span><span class="why">All 28 checks pass, and failed calls stay unscored.</span></div>
+              <div class="row"><span class="dim">Headline</span><span><span class="pill p-t">TRUSTED</span></span><span class="why">Reproduces, with a tight interval (plus or minus 4.5 points).</span></div>
+            </div>
+          </div>
+          <aside class="rside">
+            <div class="cert">
+              <div class="ck"><span>Kappa Labs certificate</span><span>Example</span></div>
+              <div class="note">Llama-3-70B agrees with the human majority on JailbreakBench</div>
+              <div class="fig">90.7%</div>
+              <div class="rng">95% interval 87.3% to 93.7%</div>
+              <span class="pill p-q" style="justify-self:start">QUALIFIED</span>
+              <div class="cond">Condition: on the 33 items the reviewers split on, it scores 60.6%, no better than always giving the more common answer.</div>
+            </div>
+            <p class="note">Worked example on public data, not issued.</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gut">
+  <div class="wrap">
+    <section class="sec" id="audits">
+      <div class="split">
+        <div><h2 class="h2">Public audits. <em class="s">Check our work.</em></h2></div>
+        <div><p class="lead">We audit widely used public benchmarks and publish the results. Every audit starts from the data the authors released, so anyone can check the published figures.</p></div>
+      </div>
+      <div class="audits">
+        <div class="audit">
+          <span class="no">No. 1</span>
+          <div><h3><a class="alink" href="dices-350.html">DICES-350</a></h3><p class="src">Google Research &middot; 350 conversations, 123 raters each, plus expert labels</p></div>
+          <p class="res">All six AI graders call far fewer conversations unsafe than the experts do (<b>6% to 32%</b> against half), and catch only <b>11% to 44%</b> of the ones the experts flag. Raw agreement flatters graders that rarely say "unsafe": against the crowd, answering "safe" every time scores 77%. <a class="more" href="dices-350.html">Read the audit &rarr;</a></p>
+          <span class="status st-pub">November 2026</span>
+        </div>
+        <div class="audit">
+          <span class="no">No. 2</span>
+          <div><h3><a class="alink" href="mt-bench.html">MT-Bench human judgments</a></h3><p class="src">LMSYS &middot; 3,355 human votes and 2,400 GPT-4 verdicts</p></div>
+          <p class="res">On the cases behind the widely quoted 85% agreement, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them <b>80.9%</b>; GPT-4 adds 3.7 points. The 85% leaves out <b>35%</b> of comparisons, including the 16% where GPT-4's verdict flipped when the answer order changed. <a class="more" href="mt-bench.html">Read the audit &rarr;</a></p>
+          <span class="status st-pub">November 2026</span>
+        </div>
+        <div class="audit">
+          <span class="no">Paper</span>
+          <div><h3>JailbreakBench judge comparison</h3><p class="src">300 jailbreak attempts, 3 human raters per attempt</p></div>
+          <p class="res">Eight AI judges put the attack success rate anywhere from <b>10% to 49%</b>; the humans say 37%. JailbreakBench's chosen judge agrees with humans 90.7% of the time, but on the <b>33 attempts</b> where the humans split it does no better than always answering "jailbroken".</p>
+          <span class="status st-rev">Working paper</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<section class="dark gut" id="regulated">
+  <div class="wrap sec">
+    <div class="split">
+      <div>
+        <h2 class="h2">For regulated industries, <em class="s">evidence a committee can read.</em></h2>
+        <p class="lead">Governance platforms give you the workflow. Kappa Labs gives you the evidence that goes in it: whether a vendor's headline figure holds up, in a form your committee reads and your supervisor can follow.</p>
+        <div><a class="btn btn-light" href="#contact">Talk to us</a></div>
+      </div>
+      <div>
+        <div class="regs">
+          <div class="reg"><span>UK</span><p>PRA SS1/23 expects independent validation of every model in scope, vendor models included, and its definition of a model covers AI and machine-learning models.</p></div>
+          <div class="reg"><span>US</span><p>SR 11-7 was replaced in April 2026 by guidance that leaves generative and agentic AI out of scope, while accountability for model risk stays with the bank.</p></div>
+          <div class="reg"><span>EU</span><p>Credit-scoring duties under the AI Act apply from 2 December 2027.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gut">
+  <div class="wrap">
+    <section class="sec" id="research">
+      <div class="split">
+        <div><h2 class="h2">Research</h2></div>
+        <div><p class="lead">The findings behind our audits, written up in full.</p></div>
+      </div>
+      <div class="cards">
+        <a class="card" href="https://doi.org/10.5281/zenodo.23955858">
+          <span class="thumb"><svg viewBox="0 0 560 245" aria-hidden="true">
+            <rect width="560" height="245" fill="#efefea"/>
+            <g fill="#2b45d4"><rect x="60" y="60" width="60" height="12" rx="2"/><rect x="60" y="82" width="92" height="12" rx="2"/><rect x="60" y="104" width="160" height="12" rx="2"/></g>
+            <g fill="#c9cff0"><rect x="60" y="126" width="248" height="12" rx="2"/><rect x="60" y="148" width="256" height="12" rx="2"/><rect x="60" y="170" width="262" height="12" rx="2"/><rect x="60" y="192" width="300" height="12" rx="2"/></g>
+            <line x1="290" y1="44" x2="290" y2="214" stroke="#0f1012" stroke-dasharray="3 4"/>
+          </svg></span>
+          <span class="cbody">
+            <span class="k">Working paper &middot; November 2026</span>
+            <h3>Headline AI Numbers Hide Disagreement</h3>
+            <p>Grader refusal, contested labels and lost verdicts in AI safety and financial evaluation.</p>
+            <span class="go">Read on Zenodo &rarr;</span>
+          </span>
+        </a>
+        <a class="card" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819">
+          <span class="thumb"><svg viewBox="0 0 560 245" aria-hidden="true">
+            <rect width="560" height="245" fill="#efefea"/>
+            <g fill="#dde1f7"><rect x="190" y="40" width="60" height="170"/><rect x="360" y="40" width="44" height="170"/></g>
+            <g fill="none" stroke-width="2.5"><path d="M50 170 C120 160 150 90 220 100 S330 150 400 80 S480 70 510 90" stroke="#0f1012"/><path d="M50 180 C120 150 160 120 220 120 S330 120 400 110 S480 95 510 100" stroke="#2b45d4"/><path d="M50 160 C110 170 170 80 230 90 S320 170 400 120 S470 60 510 70" stroke="#9aa3e0"/></g>
+          </svg></span>
+          <span class="cbody">
+            <span class="k">SSRN 7455819</span>
+            <h3>Quorum: A Benchmark for Financial AI under Contested Ground Truth</h3>
+            <p>Scoring financial AI where the experts themselves disagree: S&amp;P, Moody's and Fitch sovereign ratings.</p>
+            <span class="go">Read on SSRN &rarr;</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="team record" id="record">
+      <div><h2 class="h2" style="font-size:clamp(28px,3.4vw,40px)">Track record</h2></div>
+      <div>
+        <p>Kappa Labs grew out of open-source work on the tools used to evaluate AI. As of 8 November 2026, <a href="https://github.com/search?q=author%3AWatchTree-19+is%3Apr+is%3Amerged+-user%3AWatchTree-19&amp;type=pullrequests">85 pull requests</a> are merged in other organisations' repositories, 49 of them in AI evaluation and safety tools.</p>
+        <p>They include 25 in Microsoft's <a href="https://github.com/microsoft/PyRIT/pulls?q=is%3Apr+is%3Amerged+author%3AWatchTree-19">PyRIT</a>, 12 in <a href="https://github.com/search?q=org%3AUKGovernmentBEIS+author%3AWatchTree-19+is%3Apr+is%3Amerged&amp;type=pullrequests">UK AI Security Institute projects</a>, including Inspect, 4 in NVIDIA's <a href="https://github.com/NVIDIA/garak/pulls?q=is%3Apr+is%3Amerged+author%3AWatchTree-19">garak</a> and work for <a href="https://github.com/search?q=org%3Amlcommons+author%3AWatchTree-19+is%3Apr+is%3Amerged&amp;type=pullrequests">MLCommons</a>, alongside the statistics and finance libraries <a href="https://github.com/statsmodels/statsmodels/pulls?q=is%3Apr+is%3Amerged+author%3AWatchTree-19">statsmodels</a> and <a href="https://github.com/lballabio/QuantLib/pulls?q=is%3Apr+is%3Amerged+author%3AWatchTree-19">QuantLib</a>.</p>
+      </div>
+    </section>
+
+    <section id="contact" style="padding-bottom:24px">
+      <div class="close">
+        <h2 class="h2" style="max-width:18ch">Name the figure <em class="s">you rely on.</em></h2>
+        <p class="lead">Tell us the AI score you publish or depend on, and we will tell you what it would take to certify it.</p>
+        <div class="mail">
+          <a class="addr" id="addr" href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a>
+          <button class="btn btn-dark" type="button" id="copy">Copy email</button>
+          <span class="copied" id="note" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="fgrid">
+        <div style="display:grid;gap:12px;align-content:start">
+          <a class="brand" href="#top" aria-label="Kappa Labs">
+            <svg width="22" height="22" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>
+            Kappa Labs
+          </a>
+          <p style="color:var(--ink-2);font-size:14.5px;max-width:22rem">Independent assurance for AI evaluations.</p>
+        </div>
+        <div><h4>Company</h4><ul><li><a href="#who">Who we work with</a></li><li><a href="#approach">Approach</a></li><li><a href="#regulated">Regulated industries</a></li></ul></div>
+        <div><h4>Research</h4><ul><li><a href="#audits">Public audits</a></li><li><a href="https://doi.org/10.5281/zenodo.23955858">Working paper</a></li><li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819">Quorum benchmark</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li>hello@kappalabs.co.uk</li></ul></div>
+      </div>
+      <div class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span></div>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  var J = [
+    { id: "hum", name: "Human raters", by: "Marked by the human raters (majority of three)", p: 110, n: 190, x: 0 },
+    { id: "opus", name: "Claude Opus 5.5", p: 20, n: 186, x: 94, tie: 1 },
+    { id: "sonnet", name: "Claude Sonnet 5.5", p: 35, n: 205, x: 60 },
+    { id: "haiku", name: "Claude Haiku 5.5", p: 76, n: 221, x: 3 },
+    { id: "gpt4", name: "GPT-4", p: 119, n: 181, x: 0 },
+    { id: "lg2", name: "Llama Guard 2", p: 123, n: 177, x: 0 },
+    { id: "l3", name: "Llama-3-70B", note: "JailbreakBench's chosen judge", p: 126, n: 174, x: 0 },
+    { id: "g41", name: "GPT-4.1", p: 144, n: 156, x: 0 },
+    { id: "hb", name: "HarmBench", p: 147, n: 153, x: 0 }
+  ];
+  var dotsEl = document.getElementById("dots"), pct = document.getElementById("pct"), by = document.getElementById("by"), box = document.getElementById("judges");
+  var dots = [];
+  for (var i = 0; i < 300; i++) { var d = document.createElement("i"); d.style.transitionDelay = (i % 25) * 6 + "ms"; dotsEl.appendChild(d); dots.push(d); }
+  var shown = 36.7, raf = null;
+  function tween(to) {
+    if (raf) cancelAnimationFrame(raf);
+    var from = shown, t0 = performance.now(), dur = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 500;
+    function step(t) { var k = Math.min(1, (t - t0) / dur); k = 1 - Math.pow(1 - k, 3); shown = from + (to - from) * k; pct.textContent = shown.toFixed(1); if (k < 1) raf = requestAnimationFrame(step); }
+    raf = requestAnimationFrame(step);
+  }
+  function show(j) {
+    dots.forEach(function (d, i) { d.className = i < j.p ? "p" : (i < j.p + j.n ? "" : "x"); });
+    var graded = j.p + j.n - (j.tie || 0), rate = Math.round(1000 * j.p / graded) / 10;
+    tween(rate);
+    by.textContent = j.by || ("Marked by " + j.name + (j.note ? ", " + j.note : "") + (j.x ? ". Declined to grade " + j.x + " of 300, so the rate is on the " + graded + " it graded" + (j.tie ? " with a clear verdict" : "") : ""));
+    Array.prototype.forEach.call(box.children, function (b) { b.setAttribute("aria-pressed", b.dataset.id === j.id ? "true" : "false"); });
+  }
+  J.forEach(function (j) {
+    var b = document.createElement("button"); b.type = "button"; b.textContent = j.name; b.dataset.id = j.id;
+    if (j.id === "hum") b.className = "hum";
+    b.addEventListener("click", function () { stopAuto(); show(j); });
+    box.appendChild(b);
+  });
+  show(J[0]);
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches, k = 0, timer = null;
+  function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+  if (!reduce) {
+    timer = setInterval(function () { k = (k + 1) % J.length; show(J[k]); }, 2600);
+    document.getElementById("inst").addEventListener("pointerenter", stopAuto, { once: true });
+  }
+
+  var btn = document.getElementById("copy"), el = document.getElementById("addr"), note = document.getElementById("note");
+  btn.addEventListener("click", function () {
+    var text = el.textContent.trim();
+    function selectIt() { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); note.textContent = "Selected: press Ctrl+C"; }
+    try { navigator.clipboard.writeText(text).then(function () { note.textContent = "Copied"; }, selectIt); } catch (e) { selectIt(); }
+  });
+})();
+</script>
+</body>
+</html>
