@@ -78,7 +78,7 @@ table.words tr.us td { color:var(--ink); font-weight:500; }
 <p class="kicker">Kappa Labs glossary · November 2026</p>
 <h1>What is LLM-as-a-judge?</h1>
 <p class="def"><strong>LLM-as-a-judge means using a large language model to grade the outputs of another AI system</strong>, in place of or alongside human raters. It is also called an AI judge, an LLM judge, an autograder or model-graded evaluation.</p>
-<p>It became standard because it scales: a judge can grade thousands of answers in minutes at a fraction of the cost of people. MT-Bench is where the practice became widespread, and many safety, quality and agent benchmarks now rely on it.</p>
+<p>It became standard because it scales: a judge can grade thousands of answers in minutes at a fraction of the cost of people. The 2023 MT-Bench paper, "Judging LLM-as-a-Judge", gave the practice its usual name, and many safety, quality and agent benchmarks now rely on it.</p>
 <h2>How it works</h2>
 <p>The judge is given the task, the answer to grade, and instructions or a rubric. It returns a verdict such as pass or fail, a score, or a preference between two answers. Code then reads that reply and turns it into the reported number.</p>
 <h2>Five things to check before relying on a judge</h2>

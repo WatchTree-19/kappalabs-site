@@ -8,7 +8,7 @@ Key facts:
 - Kappa Labs checks the evaluation behind an AI score: the test itself, the human labels it is scored against, the AI judge, and the code that reads the judge's reply.
 - One engagement takes about four weeks (find, fix, certify) and works from the record the evaluation already produced. Kappa Labs never needs the client's model, systems, credentials or customer data. Every engagement runs under a mutual NDA.
 - Each part of an evaluation is graded TRUSTED, QUALIFIED or NOT SUPPORTED against fixed thresholds that are the same for every client. Where the grade earns one, Kappa Labs issues a numbered certificate with the figure that can safely be quoted and its margin.
-- Clients: AI labs and model developers, AI product companies, banks and insurers, benchmark builders, governments and safety institutes, universities and research groups.
+- Built for: AI labs and model developers, AI product companies, banks and insurers, benchmark builders, governments and safety institutes, universities and research groups.
 - Kappa Labs grew out of open-source work on the tools used to evaluate AI: as of 8 November 2026, 85 merged pull requests in other organisations' repositories, 49 of them in AI evaluation and safety tools, including 25 in Microsoft's PyRIT.
 - Kappa Labs is the trading name of Sandeep Singh Rai.
 
@@ -23,7 +23,7 @@ Key facts:
 - [What is Cohen's kappa?](https://kappalabs.co.uk/cohens-kappa): How far two raters agree beyond chance: formula, worked example (80% agreement can be a kappa of 0.375), and how to read it.
 - [What is Krippendorff's alpha?](https://kappalabs.co.uk/krippendorffs-alpha): Agreement among any number of raters on any scale, and what a good alpha can still hide.
 - [What is contested ground truth?](https://kappalabs.co.uk/contested-ground-truth): When qualified human raters disagree on the right answer, so no single label is settled.
-- [What is inter-rater agreement?](https://kappalabs.co.uk/inter-rater-agreement): How far raters give the same label, the main measures, and why it caps what an AI judge's agreement can show.
+- [What is inter-rater agreement?](https://kappalabs.co.uk/inter-rater-agreement): How far raters give the same label, the main measures, and why it limits what an AI judge's agreement can show.
 - [What is a no-skill baseline?](https://kappalabs.co.uk/no-skill-baseline): The score a rule gets without doing the task; five public examples (77% on DICES-350, 80.9% on MT-Bench, 99.3% on JudgmentBench).
 - [What is attack success rate?](https://kappalabs.co.uk/attack-success-rate): The share of attacks judged successful; eight AI judges put it at 10% to 49% on the same 300 attempts, against a human 37%.
 
