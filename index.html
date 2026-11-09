@@ -77,7 +77,8 @@ em.s { font-family: var(--serif); font-style: italic; font-weight: 400; letter-s
 .btn-line { border-color: #c9c9c2; color: var(--ink); background: transparent; }
 .btn-line:hover { border-color: var(--ink); }
 .btn-light { background: #fff; color: var(--ink); }
-@media (max-width: 860px) { .links .hide-m { display: none; } .links { gap: 16px; } }
+@media (max-width: 1000px) { .links .hide-m { display: none; } }
+@media (max-width: 860px) { .links { gap: 16px; } }
 
 /* hero */
 .hero { padding-block: 64px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
@@ -216,6 +217,15 @@ em.s { font-family: var(--serif); font-style: italic; font-weight: 400; letter-s
 .cbody p { color: var(--ink-2); font-size: 15px; }
 .cbody .go { font-size: 14px; color: var(--accent); margin-top: 6px; }
 @media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
+.fnotes { margin-top: 44px; }
+.fnotes .label { font-size: 14px; color: var(--ink-3); margin: 0 0 10px; }
+.fnotes .rows { border-top: 1px solid var(--ink); }
+.fnotes .rows a { display: grid; grid-template-columns: 130px minmax(0,1fr); gap: 4px 20px; padding: 15px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-size: 16.5px; }
+.fnotes .rows a:hover { color: var(--accent); }
+.fnotes .rows span { font: 500 12.5px/1.9 var(--mono); color: var(--ink-3); }
+.fnotes .all { display: inline-block; margin-top: 16px; font-weight: 500; text-decoration: none; font-size: 15.5px; }
+.fnotes .all:hover { color: var(--accent); }
+@media (max-width: 640px) { .fnotes .rows a { grid-template-columns: 1fr; } }
 
 /* team */
 .team { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 80px); padding-block: 0 clamp(72px, 10vw, 120px); }
@@ -263,6 +273,7 @@ footer { padding-block: 64px 48px; }
         <a class="hide-m" href="#approach">Approach</a>
         <a class="hide-m" href="#audits">Public audits</a>
         <a class="hide-m" href="#research">Research</a>
+        <a class="hide-m" href="field-notes">Field notes</a>
         <a class="btn btn-dark" href="#contact">Discuss your evaluation</a>
       </nav>
     </header>
@@ -463,6 +474,15 @@ footer { padding-block: 64px 48px; }
           </span>
         </a>
       </div>
+      <div class="fnotes">
+        <p class="label">Latest field notes</p>
+        <div class="rows">
+          <a href="field-notes#pyrit-baseline"><span>9 Nov 2026</span>Do harm scorers beat simply guessing? 22 of 36 published results do</a>
+          <a href="field-notes#pyrit"><span>9 Nov 2026</span>PyRIT, before and after</a>
+          <a href="field-notes#judgmentbench"><span>8 Nov 2026</span>JudgmentBench: the better answer is also the longer one</a>
+        </div>
+        <a class="all" href="field-notes">All field notes &rarr;</a>
+      </div>
     </section>
 
     <section class="team record" id="record">
@@ -495,7 +515,7 @@ footer { padding-block: 64px 48px; }
           <p style="color:var(--ink-2);font-size:14.5px;max-width:22rem">Independent assurance for AI evaluations.</p>
         </div>
         <div><h4>Company</h4><ul><li><a href="#who">Who we work with</a></li><li><a href="#approach">Approach</a></li><li><a href="#regulated">Regulated industries</a></li></ul></div>
-        <div><h4>Research</h4><ul><li><a href="#audits">Public audits</a></li><li><a href="https://doi.org/10.5281/zenodo.23955858">Working paper</a></li><li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819">Quorum benchmark</a></li></ul></div>
+        <div><h4>Research</h4><ul><li><a href="#audits">Public audits</a></li><li><a href="field-notes">Field notes</a></li><li><a href="https://doi.org/10.5281/zenodo.23955858">Working paper</a></li><li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819">Quorum benchmark</a></li></ul></div>
         <div><h4>Contact</h4><ul><li><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></li></ul></div>
       </div>
       <div class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span></div>
