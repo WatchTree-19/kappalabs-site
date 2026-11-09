@@ -23,6 +23,9 @@ Key facts:
 - [What is Cohen's kappa?](https://kappalabs.co.uk/cohens-kappa): How far two raters agree beyond chance: formula, worked example (80% agreement can be a kappa of 0.375), and how to read it.
 - [What is Krippendorff's alpha?](https://kappalabs.co.uk/krippendorffs-alpha): Agreement among any number of raters on any scale, and what a good alpha can still hide.
 - [What is contested ground truth?](https://kappalabs.co.uk/contested-ground-truth): When qualified human raters disagree on the right answer, so no single label is settled.
+- [What is inter-rater agreement?](https://kappalabs.co.uk/inter-rater-agreement): How far raters give the same label, the main measures, and why it caps what an AI judge's agreement can show.
+- [What is a no-skill baseline?](https://kappalabs.co.uk/no-skill-baseline): The score a rule gets without doing the task; five public examples (77% on DICES-350, 80.9% on MT-Bench, 99.3% on JudgmentBench).
+- [What is attack success rate?](https://kappalabs.co.uk/attack-success-rate): The share of attacks judged successful; eight AI judges put it at 10% to 49% on the same 300 attempts, against a human 37%.
 
 ## Public audits
 
