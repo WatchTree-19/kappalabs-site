@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What is LLM-as-a-judge? · Kappa Labs</title>
+<meta name="description" content="LLM-as-a-judge means using a language model to grade another AI system&#x27;s outputs. What it is, why it is used, and five things to check before relying on a judge&#x27;s score, with public examples.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%23f4f4f0'/%3E%3Cg transform='translate(3.2 3.0) scale(0.76)'%3E%3Cpath transform='translate(2.0 23.0) scale(0.02778 -0.02778)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%230f1012' stroke='%230f1012' stroke-width='10' stroke-linejoin='round'/%3E%3Ccircle cx='22.4' cy='21.0' r='2.2' fill='%232b45d4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://kappalabs.co.uk/llm-as-a-judge">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/llm-as-a-judge">
+<meta property="og:title" content="What is LLM-as-a-judge?">
+<meta property="og:description" content="LLM-as-a-judge means using a language model to grade another AI system&#x27;s outputs. What it is, why it is used, and five things to check before relying on a judge&#x27;s score, with public examples.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root { --bg:#f4f4f0; --surface:#fff; --ink:#0f1012; --ink-2:#4b4f56; --ink-3:#868b93; --line:#e1e1da; --accent:#2b45d4; --accent-soft:#c9cff0;
+  --sans:"Geist","Helvetica Neue",Helvetica,Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.gut { padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1200px; margin:0 auto; }
+a { color:inherit; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+.brand { white-space:nowrap; display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:17px; letter-spacing:-0.02em; text-decoration:none; }
+.back { font-size:14.5px; color:var(--ink-2); text-decoration:none; }
+.back:hover { color:var(--ink); }
+article { max-width:44rem; margin:clamp(40px,7vw,88px) auto clamp(64px,9vw,120px); }
+.kicker { font:500 13px/1.4 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:0 0 18px; order:-1; }
+h1 { font-size:clamp(34px,5vw,54px); line-height:1.06; font-weight:400; letter-spacing:-0.03em; margin:0 0 20px; text-wrap:balance; }
+h2 { font-size:26px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px; }
+article p { margin:0 0 18px; color:var(--ink-2); }
+article p strong { color:var(--ink); font-weight:500; }
+article a { text-decoration:underline; text-decoration-color:var(--accent-soft); text-underline-offset:3px; text-decoration-thickness:1.5px; overflow-wrap:anywhere; }
+article a:hover { text-decoration-color:var(--accent); }
+.note { font-size:14.5px; color:var(--ink-3) !important; }
+.note em { font-style:normal; }
+.tbl { overflow-x:auto; margin:8px 0 14px; border-top:1px solid var(--ink); }
+table { width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-weight:500; font-size:13px; color:var(--ink-3); padding:12px 12px 10px 0; border-bottom:1px solid var(--line); vertical-align:bottom; }
+td { padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink-2); }
+td:first-child { color:var(--ink); }
+th:not(:first-child), td:not(:first-child) { text-align:right; }
+.fine { padding-block:20px 40px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-3); }
+.fine a { text-decoration:none; }
+
+.def { font-size:20px; line-height:1.55; color:var(--ink) !important; }
+.def strong { font-weight:600; }
+article ol, article ul { margin:0 0 18px; padding-left:22px; color:var(--ink-2); }
+article li { margin:0 0 10px; }
+article li strong { color:var(--ink); font-weight:500; }
+h3 { font-size:18px; font-weight:500; letter-spacing:-0.01em; margin:26px 0 6px; }
+table.words th:not(:first-child), table.words td:not(:first-child) { text-align:left; }
+table.words tr.us td { color:var(--ink); font-weight:500; }
+
+.formula { font:500 17px/1.6 var(--mono); color:var(--ink) !important; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px 18px; overflow-x:auto; white-space:nowrap; }
+.terms { margin-top:36px; border-top:1px solid var(--ink); }
+.terms a { display:grid; grid-template-columns:230px minmax(0,1fr); gap:6px 28px; padding:20px 0; border-bottom:1px solid var(--line); text-decoration:none; }
+.terms a b { font-weight:500; font-size:18px; color:var(--ink); }
+.terms a span { color:var(--ink-2); font-size:15.5px; }
+.terms a:hover b { color:var(--accent); }
+@media (max-width:640px) { .terms a { grid-template-columns:1fr; } }
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kappalabs.co.uk/#org","name":"Kappa Labs","url":"https://kappalabs.co.uk/","logo":"https://kappalabs.co.uk/apple-touch-icon.png"},{"@type":"Article","headline":"What is LLM-as-a-judge?","description":"LLM-as-a-judge means using a language model to grade another AI system's outputs. What it is, why it is used, and five things to check before relying on a judge's score, with public examples.","url":"https://kappalabs.co.uk/llm-as-a-judge","mainEntityOfPage":"https://kappalabs.co.uk/llm-as-a-judge","datePublished":"2026-11-09","dateModified":"2026-11-09","image":"https://kappalabs.co.uk/og.png","author":{"@id":"https://kappalabs.co.uk/#org"},"publisher":{"@id":"https://kappalabs.co.uk/#org"},"about":{"@id":"https://kappalabs.co.uk/llm-as-a-judge#term"}},{"@type":"DefinedTerm","@id":"https://kappalabs.co.uk/llm-as-a-judge#term","name":"LLM-as-a-judge","alternateName":["AI judge","LLM judge","model-graded evaluation","autograder"],"description":"Using a language model to grade the outputs of another AI system, in place of human raters.","url":"https://kappalabs.co.uk/llm-as-a-judge","inDefinedTermSet":{"@type":"DefinedTermSet","@id":"https://kappalabs.co.uk/glossary#set","name":"Kappa Labs glossary of AI evaluation terms","url":"https://kappalabs.co.uk/glossary"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is LLM-as-a-judge reliable?","acceptedAnswer":{"@type":"Answer","text":"It depends on the judge, the task and how it was checked. On one public jailbreak benchmark, eight AI judges put the attack success rate anywhere from 10% to 49% where human raters say 37%, so a judge's score should be checked before it is relied on."}},{"@type":"Question","name":"What is the difference between LLM-as-a-judge and meta-evaluation?","acceptedAnswer":{"@type":"Answer","text":"LLM-as-a-judge is a way of scoring outputs with an AI model. Meta-evaluation checks whether that scoring, and the labels and code around it, can be trusted."}}]}]}</script>
+</head>
+<body>
+<div class="gut"><div class="wrap">
+<header class="nav"><a class="brand" href="./" aria-label="Kappa Labs home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>Kappa Labs</a><a class="back" href="glossary">&larr; Glossary</a></header>
+<main><article>
+<p class="kicker">Kappa Labs glossary · November 2026</p>
+<h1>What is LLM-as-a-judge?</h1>
+<p class="def"><strong>LLM-as-a-judge means using a large language model to grade the outputs of another AI system</strong>, in place of or alongside human raters. It is also called an AI judge, an LLM judge, an autograder or model-graded evaluation.</p>
+<p>It became standard because it scales: a judge can grade thousands of answers in minutes at a fraction of the cost of people. MT-Bench is where the practice became widespread, and many safety, quality and agent benchmarks now rely on it.</p>
+<h2>How it works</h2>
+<p>The judge is given the task, the answer to grade, and instructions or a rubric. It returns a verdict such as pass or fail, a score, or a preference between two answers. Code then reads that reply and turns it into the reported number.</p>
+<h2>Five things to check before relying on a judge</h2>
+<ul>
+<li><strong>Which judge was used.</strong> On the same 300 public jailbreak attempts, eight AI judges put the attack success rate anywhere from 10% to 49%. The human raters say 37%. <a href="https://doi.org/10.5281/zenodo.23955858">Working paper</a></li>
+<li><strong>What it declined to grade.</strong> Claude Opus 5.5 declined to grade 39% of calls on that benchmark, mostly on the attacks that worked (71% against 20%). <a href="field-notes#judge-declines">Field note</a></li>
+<li><strong>Whether it beats a simple rule.</strong> On MT-Bench, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them 80.9%. GPT-4 adds 3.7 points. <a href="mt-bench">Audit</a></li>
+<li><strong>Whether the verdict is stable.</strong> On MT-Bench, GPT-4's verdict flipped in 16% of cases when the two answers swapped places. <a href="mt-bench">Audit</a></li>
+<li><strong>Whether the code reads the reply correctly.</strong> A valid verdict can be lost over a stray space or a score written as "3.0". <a href="pyrit">PyRIT, before and after</a></li>
+</ul>
+<h2>How judges are validated</h2>
+<p>A judge is usually justified by its agreement with human labels, often reported as a percentage or as <a href="cohens-kappa">Cohen's kappa</a>. That only works if the human labels are themselves settled, which is the question of <a href="contested-ground-truth">contested ground truth</a>.</p>
+<h2>Where meta-evaluation comes in</h2>
+<p>Checking the judge, the labels it is compared with and the code around it is called <a href="meta-evaluation">meta-evaluation</a>. It is what Kappa Labs does.</p>
+<h2>Common questions</h2>
+<h3>Is LLM-as-a-judge reliable?</h3>
+<p>It depends on the judge, the task and how it was checked. On one public jailbreak benchmark, eight AI judges put the attack success rate anywhere from 10% to 49% where human raters say 37%, so a judge's score should be checked before it is relied on.</p>
+<h3>What is the difference between LLM-as-a-judge and meta-evaluation?</h3>
+<p>LLM-as-a-judge is a way of scoring outputs with an AI model. Meta-evaluation checks whether that scoring, and the labels and code around it, can be trusted.</p>
+<p class="note" style="margin-top:28px"><em>Part of the Kappa Labs <a href="glossary">glossary</a>. Kappa Labs is an independent assurance firm for AI evaluations. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></em></p>
+</article></main>
+<footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
+</div></div>
+</body>
+</html>

@@ -16,6 +16,14 @@ Key facts:
 
 - [What is meta-evaluation?](https://kappalabs.co.uk/meta-evaluation): Definition, why it matters, the questions it asks, how it differs from evaluation, red teaming and model validation, and where the term comes from.
 
+## Glossary
+
+- [Glossary](https://kappalabs.co.uk/glossary): Plain definitions of AI evaluation terms, each with a public example.
+- [What is LLM-as-a-judge?](https://kappalabs.co.uk/llm-as-a-judge): Using a language model to grade another AI system's outputs, and five things to check before relying on a judge's score.
+- [What is Cohen's kappa?](https://kappalabs.co.uk/cohens-kappa): How far two raters agree beyond chance: formula, worked example (80% agreement can be a kappa of 0.375), and how to read it.
+- [What is Krippendorff's alpha?](https://kappalabs.co.uk/krippendorffs-alpha): Agreement among any number of raters on any scale, and what a good alpha can still hide.
+- [What is contested ground truth?](https://kappalabs.co.uk/contested-ground-truth): When qualified human raters disagree on the right answer, so no single label is settled.
+
 ## Public audits
 
 - [DICES-350 (Google Research)](https://kappalabs.co.uk/dices-350): All six AI graders call far fewer conversations unsafe than the experts do (6% to 32% against half) and catch only 11% to 44% of the ones the experts flag. Against the crowd, answering "safe" every time scores 77%.
