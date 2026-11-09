@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PyRIT, before and after · Kappa Labs case study</title>
+<meta name="description" content="What our work changed in Microsoft\'s PyRIT scorers, July to November 2026: new scorers, accuracy reporting and five fixes, each run on PyRIT\'s real code before and after.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%230f1012'/%3E%3Cpath transform='translate(6.70 20.75) scale(0.02153 -0.02153)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%23fff' stroke='%23fff' stroke-width='18' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://kappalabs.co.uk/pyrit">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/pyrit">
+<meta property="og:title" content="PyRIT, before and after">
+<meta property="og:description" content="What our work changed in Microsoft\'s PyRIT scorers, July to November 2026: new scorers, accuracy reporting and five fixes, each run on PyRIT\'s real code before and after.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root { --bg:#f4f4f0; --surface:#fff; --ink:#0f1012; --ink-2:#4b4f56; --ink-3:#868b93; --line:#e1e1da; --accent:#2b45d4; --accent-soft:#c9cff0;
+  --sans:"Geist","Helvetica Neue",Helvetica,Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.gut { padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1200px; margin:0 auto; }
+a { color:inherit; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+.brand { white-space: nowrap; display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:17px; letter-spacing:-0.02em; text-decoration:none; }
+.back { font-size:14.5px; color:var(--ink-2); text-decoration:none; }
+.back:hover { color:var(--ink); }
+article { max-width:44rem; margin:clamp(40px,7vw,88px) auto clamp(64px,9vw,120px); }
+.kicker { font:500 13px/1.4 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:0 0 18px; order:-1; }
+h1 { font-size:clamp(34px,5vw,54px); line-height:1.06; font-weight:400; letter-spacing:-0.03em; margin:0 0 20px; text-wrap:balance; }
+h2 { font-size:26px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px; }
+article p { margin:0 0 18px; color:var(--ink-2); }
+article p strong { color:var(--ink); font-weight:500; }
+article a { text-decoration:underline; text-decoration-color:var(--accent-soft); text-underline-offset:3px; text-decoration-thickness:1.5px; overflow-wrap:anywhere; }
+article a:hover { text-decoration-color:var(--accent); }
+.note { font-size:14.5px; color:var(--ink-3) !important; }
+.note em { font-style:normal; }
+.tbl { overflow-x:auto; margin:8px 0 14px; border-top:1px solid var(--ink); }
+table { width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-weight:500; font-size:13px; color:var(--ink-3); padding:12px 12px 10px 0; border-bottom:1px solid var(--line); vertical-align:bottom; }
+td { padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink-2); }
+td:first-child { color:var(--ink); }
+th:not(:first-child), td:not(:first-child) { text-align:right; }
+.fine { padding-block:20px 40px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-3); }
+.fine a { text-decoration:none; }
+h3 { font-size:19px; font-weight:500; letter-spacing:-0.01em; margin:34px 0 10px; }
+article ul { margin:0 0 20px; padding-left:20px; color:var(--ink-2); }
+article li { margin:0 0 10px; }
+article li strong { color:var(--ink); font-weight:500; }
+article code { font-family:"Geist Mono", ui-monospace, monospace; font-size:0.88em; background:var(--accent-soft, #e9ecfb); padding:1px 5px; border-radius:4px; }
+
+
+article.wide { max-width:54rem; }
+.eyebrow { font:500 12px/1.4 var(--mono); letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin:56px 0 10px; }
+.fx-head { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 16px; }
+.fx-head h2, .fx-head h3 { margin:0 0 10px; }
+.fx { margin:0 0 40px; }
+.fx .eyebrow { margin-top:56px; }
+a.pr { font:400 13px/1.4 var(--mono); white-space:nowrap; }
+.facts { display:flex; flex-wrap:wrap; gap:8px 22px; font-size:14px; color:var(--ink-3); margin:6px 0 8px; }
+.facts b { color:var(--ink); font-weight:500; font-variant-numeric:tabular-nums; }
+.shot { margin:14px 0 0; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--surface); }
+.shot img { display:block; width:100%; height:auto; }
+.panes { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; }
+.pane { min-width:0; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--surface); }
+.pane .tag { display:flex; justify-content:space-between; gap:10px; padding:7px 12px; font:500 11.5px/1.4 var(--mono); letter-spacing:.04em; border-bottom:1px solid var(--line); }
+.pane.before .tag { color:var(--ink-3); background:#efefea; }
+.pane.after .tag { color:var(--accent); background:#eef0fb; }
+.pane pre { margin:0; padding:12px; font:400 12.5px/1.6 var(--mono); color:var(--ink-2); white-space:pre-wrap; word-break:break-word; }
+.pane .dim { color:var(--ink-3); }
+.pane .yes { color:var(--accent); font-weight:500; }
+@media (max-width:720px) { .panes { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="gut"><div class="wrap">
+<header class="nav"><a class="brand" href="./" aria-label="Kappa Labs home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>Kappa Labs</a><a class="back" href="./">&larr; Kappa Labs home</a></header>
+<main><article class="wide">
+<p class="kicker">Kappa Labs case study · November 2026</p>
+<h1>PyRIT, before and after</h1>
+<p>PyRIT is Microsoft's open-source toolkit for red-teaming AI, and its scorers decide whether an attack worked. Microsoft builds it in the open and publishes its own scorer results, which is what makes a page like this possible, so our thanks first to Richard Lundeen and the PyRIT team. This page shows what our work changed: scorers now inside PyRIT's own app, things PyRIT can now check that it could not before, what its accuracy reports now show, and five scorers that gave wrong answers, run on PyRIT's real code before and after each fix.</p>
+<div class="facts"><span><b>25</b> merged pull requests, July to November 2026</span><span>Scorer classes <b>45 → 70</b></span><span><b>3</b> of the 42 scorer types in PyRIT's web app are ours, and a fourth carries our fix</span><span>Named PyRIT MVP by maintainer Richard Lundeen</span></div>
+
+<p class="eyebrow">1 · Inside the product</p>
+<div class="fx-head"><h2>Our scorers in PyRIT's own app</h2><a class="pr" href="https://github.com/microsoft/PyRIT/tree/main/frontend">Co-PyRIT 1.2.0.dev0</a></div>
+<p>Co-PyRIT is PyRIT's web app, built by the PyRIT team. Security teams pick scorers from its registry to judge their attacks. Three of the scorer types they can pick are ours: the local refusal and violence classifiers and the tool-call scorer. A fourth, the plagiarism scorer, carries our fix. Screenshot from today's PyRIT, running unmodified, with the operator name blanked.</p>
+<figure class="shot"><img src="pyrit-copyrit-scorers.png" alt="Co-PyRIT Scorer Registry listing refusal-local (LocalRefusalClassifierScorer), tool-calls (MessageToolCallScorer), plagiarism (PlagiarismScorer) and violence-local (LocalViolenceClassifierScorer)" width="1600" height="778" loading="lazy"></figure>
+
+<p class="eyebrow">2 · New in PyRIT</p>
+<section class="fx"><div class="fx-head"><h3>Did the AI agent leak a secret into a file?</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/3042">#3042 · FileWriteScorer</a></div>
+<p>AI agents now write files, and the risk is what they write. Before, PyRIT could only judge what an agent said. Now it can check what the agent actually left on disk. Output from our own tutorial for it, run today.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>July 2026</span></div><pre><span class="dim">Agent writes "api_key=EXAMPLE" to /data/out.txt</span>
+-> no way to check it: PyRIT only scored
+   the agent's reply, not files on disk</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>today</span></div><pre><span class="dim">FileWriteScorer(source=LocalFileSurfaceSource(workspace))</span>
+Content present before anything ran: False
+Holds an api_key after the write: <span class="yes">True</span>
+Anything under /data holds an api_key: <span class="yes">True</span>
+Saved snapshot holds EXAMPLE: True</pre></div></div></section>
+<section class="fx"><div class="fx-head"><h3>Does the code the AI wrote actually run?</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/3218">#3218 · ProgramExecutionScorer</a></div>
+<p>When a model writes a program, reading it is not enough. PyRIT now runs it in a locked-down sandbox and checks the result. Output from our tutorial as published in PyRIT's documentation (it needs Docker, so it was not re-run here).</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>July 2026</span></div><pre><span class="dim">Model writes: print(int(sys.argv[1]) ** 2)</span>
+-> no way to run it: a grader could only
+   read the code and guess</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>today</span></div><pre><span class="dim">ProgramExecutionScorer, input "3", expect "9"</span>
+Direct execution: 9
+Score: <span class="yes">True</span> - All 1 case(s) produced the expected
+       result under python.
+Replay against "8": False</pre></div></div></section>
+<section class="fx"><div class="fx-head"><h3>When the safety judge declines to grade</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/2723">#2723 · fallback scorers</a></div>
+<p>Our research found Claude Opus declined to grade 39% of calls on a public jailbreak benchmark, mostly the attacks that worked. A declined grade used to be a lost score. PyRIT can now pass it to a second judge. Run today on PyRIT's code, with two stand-in judges in place of live models.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>one judge</span></div><pre><span class="dim">Judge: "I cannot help evaluate this content."</span>
+-> status undetermined, verdict None
+-> score lost</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>TrueFalseFallbackScorer</span></div><pre><span class="dim">Judge declines; second judge takes over</span>
+-> status complete, verdict <span class="yes">true</span>
+-> Primary returned an undetermined score.
+-> fallback_rationale: The response gives the
+   requested harmful instructions.</pre></div></div></section>
+
+<p class="eyebrow">3 · What the accuracy reports now show</p>
+<div class="fx-head"><h2>Does each harm scorer beat simply guessing?</h2><a class="pr" href="https://github.com/microsoft/PyRIT/pull/2798">#2798 · constant-guess baseline</a></div>
+<p>Microsoft publishes these evaluation results openly, which is what makes this check possible. PyRIT reports how far each harm scorer's answers sit from human ratings, and its evaluations now report that error next to a baseline: the error of a scorer that ignores the response and always gives the typical score. The published results predate the baseline, so we applied PyRIT's formula to them:</p>
+<div class="tbl"><table><thead><tr><th>Harm category</th><th>Always guess the typical score</th><th>PyRIT's published results</th><th>Beat guessing</th></tr></thead><tbody>
+<tr><td>Violence</td><td>0.31</td><td>0.16 to 0.24</td><td>5 of 5</td></tr>
+<tr><td>Hate speech</td><td>0.31</td><td>0.17 to 0.18</td><td>5 of 5</td></tr>
+<tr><td>Sexual content</td><td>0.30</td><td>0.13 to 0.20</td><td>5 of 5</td></tr>
+<tr><td>Information integrity</td><td>0.31</td><td>0.27 to 0.30</td><td>4 of 4</td></tr>
+<tr><td>Self-harm</td><td>0.31</td><td>0.27 to 0.36</td><td>2 of 5</td></tr>
+<tr><td>Exploits</td><td>0.30</td><td>0.28 to 0.34</td><td>1 of 4</td></tr>
+<tr><td>Representational harm</td><td>0.28</td><td>0.28 to 0.33</td><td>0 of 4</td></tr>
+<tr><td>Privacy</td><td>0.29</td><td>0.37 to 0.40</td><td>0 of 4</td></tr>
+</tbody></table></div>
+<p class="note">Mean absolute error on a 0 to 1 scale, lower is better; 36 published results across 8 categories (several are the same scorer re-run on newer PyRIT versions), 22 of which beat guessing. Each response in these datasets carries one human rating. As PyRIT notes, the baseline is computed in-sample, which makes it "a demanding reference".</p>
+<p>This is what the baseline is for: it shows teams which categories are already strong and where there is most room to improve. For datasets rated by several people, a companion change (<a href="https://github.com/microsoft/PyRIT/pull/2722">#2722</a>) splits the same error by how far the raters agreed with each other.</p>
+
+<p class="eyebrow">4 · Five fixes, before and after</p>
+<section class="fx"><div class="fx-head"><h3>A plagiarism check that flagged part of a word</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/2388">#2388 · merged 14 Aug</a></div>
+<p>Checking whether a model copied the reference text "cat", PyRIT matched it inside "concatenate" and scored the reply as fully copied.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>2249d2a6</span></div><pre><span class="dim">PlagiarismScorer(reference_text="cat")
+score_text_async("Please concatenate the two files.")</span>
+-> plagiarism score = 1.0   (fully copied)</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>f049e1a4</span></div><pre><span class="dim">PlagiarismScorer(reference_text="cat")
+score_text_async("Please concatenate the two files.")</span>
+-> plagiarism score = <span class="yes">0.0</span>   (nothing copied)</pre></div></div></section>
+<section class="fx"><div class="fx-head"><h3>An invented package that slipped through</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/2454">#2454 · merged 21 Aug</a></div>
+<p>Models sometimes write code that imports packages that do not exist, which attackers can then register. PyRIT checked only the first name on an import line.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>82b7e031</span></div><pre><span class="dim">PackageHallucinationScorer(known_packages={"requests"})
+model reply: "import requests, totally_fake_pkg"</span>
+-> hallucinated package found = false
+-> rationale: No hallucinated packages detected.</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>d1230cbe</span></div><pre><span class="dim">PackageHallucinationScorer(known_packages={"requests"})
+model reply: "import requests, totally_fake_pkg"</span>
+-> hallucinated package found = <span class="yes">true</span>
+-> rationale: Hallucinated python packages: totally_fake_pkg</pre></div></div></section>
+<section class="fx"><div class="fx-head"><h3>Valid verdicts set aside over a stray space</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/2389">#2389 · merged 14 Aug</a></div>
+<p>When an AI judge answered "true" followed by a line break, or " false" with a leading space, PyRIT rejected a perfectly clear verdict.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>3b068a4d</span></div><pre><span class="dim">judge's verdict: 'true&#92;n'</span>
+-> rejected: InvalidJsonException: True/false score_value
+   must be 'true' or 'false', not 'true&#92;n'.
+<span class="dim">judge's verdict: ' false'</span>
+-> rejected: InvalidJsonException: ... not ' false'.</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>e1107cc0</span></div><pre><span class="dim">judge's verdict: 'true&#92;n'</span>
+-> <span class="yes">accepted as true</span>
+
+<span class="dim">judge's verdict: ' false'</span>
+-> <span class="yes">accepted as false</span></pre></div></div></section>
+<section class="fx"><div class="fx-head"><h3>A Likert judge that stopped on "3.0"</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/2133">#2133 · merged 8 Jul</a></div>
+<p>A Likert scorer asks an AI judge to rate harm from 1 to 5. A judge answering "3.0" instead of "3" raised an error and the score was lost.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>3dd5806c</span></div><pre><span class="dim">SelfAskLikertScorer(likert_scale=HARM_SCALE)
+judge replies with a score of "3.0"</span>
+-> ValueError: invalid literal for int()
+   with base 10: '3.0'</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>0bbeb71f</span></div><pre><span class="dim">SelfAskLikertScorer(likert_scale=HARM_SCALE)
+judge replies with a score of "3.0"</span>
+-> <span class="yes">score 0.5, likert_value 3</span></pre></div></div></section>
+<section class="fx"><div class="fx-head"><h3>A threshold verdict that named the wrong harm</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/2451">#2451 · merged 22 Aug, with Richard Lundeen</a></div>
+<p>Some scorers return one score per harm category. The verdict was right, but its explanation came from whichever category came first, here a zero score for hate.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>ac8a3094</span></div><pre><span class="dim">category scores: hate 0.0, violence 0.9; threshold 0.5</span>
+-> verdict: True
+-> category reported: ['hate']
+-> rationale: No hate content.</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>c8b5faaf</span></div><pre><span class="dim">category scores: hate 0.0, violence 0.9; threshold 0.5</span>
+-> verdict: True
+-> category reported: <span class="yes">['hate', 'violence']</span>
+-> rationale: <span class="yes">... 0.9: Graphic violence.</span></pre></div></div></section>
+
+<p class="note">How this was run: PyRIT's public repository. The app screenshot and the file-write and fallback runs use today's PyRIT (commit c98bdd8); the program-execution output is from PyRIT's published tutorial. The accuracy table is our calculation: PyRIT's own baseline formula applied to the human ratings and published scorer results that ship in PyRIT's scorer_evals data. The five fixes were run at the commit before each fix and at the fix, with the same input. Where a fix comes after the AI judge (the Likert case), the judge's reply was supplied directly; the threshold and fallback cases use small stand-in scorers in place of live models. Everything else is PyRIT's own code. Scorer counts compare commits 7ab40cb (7 July 2026) and c98bdd8 (8 November 2026).</p>
+<p>With thanks to Richard Lundeen, Roman Lutz, Hannah Westra and the PyRIT team, who reviewed and merged this work. Code and history: <a href="https://github.com/microsoft/PyRIT">github.com/microsoft/PyRIT</a>. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></p>
+</article></main>
+<footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
+</div></div>
+</body>
+</html>
