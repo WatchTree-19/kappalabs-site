@@ -76,7 +76,7 @@ a.pr { font:400 13px/1.4 var(--mono); white-space:nowrap; }
 .pane pre { margin:0; padding:12px; font:400 12.5px/1.6 var(--mono); color:var(--ink-2); white-space:pre-wrap; word-break:break-word; }
 .pane .dim { color:var(--ink-3); }
 .pane .yes { color:var(--accent); font-weight:500; }
-@media (max-width:720px) { .panes { grid-template-columns:1fr; } }
+@media (max-width:720px) { .panes { grid-template-columns:1fr; } .fx-head h2, .fx-head h3 { margin-bottom:0; } a.pr { display:inline-block; margin-bottom:10px; } }
 </style>
 </head>
 <body>
@@ -90,14 +90,14 @@ a.pr { font:400 13px/1.4 var(--mono); white-space:nowrap; }
 
 <p class="eyebrow">1 · Inside the product</p>
 <div class="fx-head"><h2>Our scorers in PyRIT's own app</h2><a class="pr" href="https://github.com/microsoft/PyRIT/tree/main/frontend">Co-PyRIT 1.2.0.dev0</a></div>
-<p>Co-PyRIT is PyRIT's web app, built by the PyRIT team. Security teams pick scorers from its registry to judge their attacks. Three of the scorer types they can pick are ours: the local refusal and violence classifiers and the tool-call scorer. A fourth, the plagiarism scorer, carries our fix. Screenshot from today's PyRIT, running unmodified, with the operator name blanked.</p>
-<figure class="shot"><img src="pyrit-copyrit-scorers.png" alt="Co-PyRIT Scorer Registry listing refusal-local (LocalRefusalClassifierScorer), tool-calls (MessageToolCallScorer), plagiarism (PlagiarismScorer) and violence-local (LocalViolenceClassifierScorer)" width="1600" height="778" loading="lazy"></figure>
+<p>Co-PyRIT is PyRIT's web app, built by the PyRIT team. Security teams pick scorers from its registry to judge their attacks. Three of the scorer types they can pick are ours: the local refusal and violence classifiers and the tool-call scorer. A fourth, the plagiarism scorer, carries our fix. Screenshot from PyRIT as of 8 November 2026, running unmodified, with the operator name blanked.</p>
+<figure class="shot"><a href="pyrit-copyrit-scorers.png" aria-label="Open the screenshot full size"><img src="pyrit-copyrit-scorers.png" alt="Co-PyRIT Scorer Registry listing refusal-local (LocalRefusalClassifierScorer), tool-calls (MessageToolCallScorer), plagiarism (PlagiarismScorer) and violence-local (LocalViolenceClassifierScorer)" width="1600" height="778" loading="lazy"></a></figure>
 
 <p class="eyebrow">2 · New in PyRIT</p>
 <section class="fx"><div class="fx-head"><h3>Did the AI agent leak a secret into a file?</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/3042">#3042 · FileWriteScorer</a></div>
-<p>AI agents now write files, and the risk is what they write. Before, PyRIT could only judge what an agent said. Now it can check what the agent actually left on disk. Output from our own tutorial for it, run today.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>July 2026</span></div><pre><span class="dim">Agent writes "api_key=EXAMPLE" to /data/out.txt</span>
+<p>AI agents now write files, and the risk is what they write. Before, PyRIT could only judge what an agent said. Now it can check what the agent actually left on disk. Output from our own tutorial for it, run in November 2026.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>July 2026</span></div><pre><span class="dim">Agent writes "api_key=EXAMPLE" to /data/out.txt</span>
 -> no way to check it: PyRIT only scored
-   the agent's reply, not files on disk</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>today</span></div><pre><span class="dim">FileWriteScorer(source=LocalFileSurfaceSource(workspace))</span>
+   the agent's reply, not files on disk</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>November 2026</span></div><pre><span class="dim">FileWriteScorer(source=LocalFileSurfaceSource(workspace))</span>
 Content present before anything ran: False
 Holds an api_key after the write: <span class="yes">True</span>
 Anything under /data holds an api_key: <span class="yes">True</span>
@@ -105,13 +105,13 @@ Saved snapshot holds EXAMPLE: True</pre></div></div></section>
 <section class="fx"><div class="fx-head"><h3>Does the code the AI wrote actually run?</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/3218">#3218 · ProgramExecutionScorer</a></div>
 <p>When a model writes a program, reading it is not enough. PyRIT now runs it in a locked-down sandbox and checks the result. Output from our tutorial as published in PyRIT's documentation (it needs Docker, so it was not re-run here).</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>July 2026</span></div><pre><span class="dim">Model writes: print(int(sys.argv[1]) ** 2)</span>
 -> no way to run it: a grader could only
-   read the code and guess</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>today</span></div><pre><span class="dim">ProgramExecutionScorer, input "3", expect "9"</span>
+   read the code and guess</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>November 2026</span></div><pre><span class="dim">ProgramExecutionScorer, input "3", expect "9"</span>
 Direct execution: 9
 Score: <span class="yes">True</span> - All 1 case(s) produced the expected
        result under python.
 Replay against "8": False</pre></div></div></section>
 <section class="fx"><div class="fx-head"><h3>When the safety judge declines to grade</h3><a class="pr" href="https://github.com/microsoft/PyRIT/pull/2723">#2723 · fallback scorers</a></div>
-<p>Our research found Claude Opus declined to grade 39% of calls on a public jailbreak benchmark, mostly the attacks that worked. A declined grade used to be a lost score. PyRIT can now pass it to a second judge. Run today on PyRIT's code, with two stand-in judges in place of live models.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>one judge</span></div><pre><span class="dim">Judge: "I cannot help evaluate this content."</span>
+<p>Our research found Claude Opus declined to grade 39% of calls on a public jailbreak benchmark, mostly the attacks that worked. A declined grade used to be a lost score. PyRIT can now pass it to a second judge. Run in November 2026 on PyRIT's code, with two stand-in judges in place of live models.</p><div class="panes"><div class="pane before"><div class="tag"><span>BEFORE</span><span>one judge</span></div><pre><span class="dim">Judge: "I cannot help evaluate this content."</span>
 -> status undetermined, verdict None
 -> score lost</pre></div><div class="pane after"><div class="tag"><span>AFTER</span><span>TrueFalseFallbackScorer</span></div><pre><span class="dim">Judge declines; second judge takes over</span>
 -> status complete, verdict <span class="yes">true</span>
@@ -176,7 +176,7 @@ judge replies with a score of "3.0"</span>
 -> category reported: <span class="yes">['hate', 'violence']</span>
 -> rationale: <span class="yes">... 0.9: Graphic violence.</span></pre></div></div></section>
 
-<p class="note">How this was run: PyRIT's public repository. The app screenshot and the file-write and fallback runs use today's PyRIT (commit c98bdd8); the program-execution output is from PyRIT's published tutorial. The accuracy table is our calculation: PyRIT's own baseline formula applied to the human ratings and published scorer results that ship in PyRIT's scorer_evals data. The five fixes were run at the commit before each fix and at the fix, with the same input. Where a fix comes after the AI judge (the Likert case), the judge's reply was supplied directly; the threshold and fallback cases use small stand-in scorers in place of live models. Everything else is PyRIT's own code. Scorer counts compare commits 7ab40cb (7 July 2026) and c98bdd8 (8 November 2026).</p>
+<p class="note">How this was run: PyRIT's public repository. The app screenshot and the file-write and fallback runs use PyRIT as of 8 November 2026 (commit c98bdd8); the program-execution output is from PyRIT's published tutorial. The accuracy table is our calculation: PyRIT's own baseline formula applied to the human ratings and published scorer results that ship in PyRIT's scorer_evals data. The five fixes were run at the commit before each fix and at the fix, with the same input. Where a fix comes after the AI judge (the Likert case), the judge's reply was supplied directly; the threshold and fallback cases use small stand-in scorers in place of live models. Everything else is PyRIT's own code. Scorer counts compare commits 7ab40cb (7 July 2026) and c98bdd8 (8 November 2026).</p>
 <p>With thanks to Richard Lundeen, Roman Lutz, Hannah Westra and the PyRIT team, who reviewed and merged this work. Code and history: <a href="https://github.com/microsoft/PyRIT">github.com/microsoft/PyRIT</a>. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></p>
 </article></main>
 <footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
