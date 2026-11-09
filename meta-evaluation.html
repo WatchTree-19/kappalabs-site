@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What is meta-evaluation? · Kappa Labs</title>
+<meta name="description" content="Meta-evaluation is the evaluation of an evaluation: checking whether the test, the human labels, the AI judge and the scoring code behind an AI score can be trusted. A plain guide with public examples.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%23f4f4f0'/%3E%3Cg transform='translate(3.2 3.0) scale(0.76)'%3E%3Cpath transform='translate(2.0 23.0) scale(0.02778 -0.02778)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%230f1012' stroke='%230f1012' stroke-width='10' stroke-linejoin='round'/%3E%3Ccircle cx='22.4' cy='21.0' r='2.2' fill='%232b45d4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://kappalabs.co.uk/meta-evaluation">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/meta-evaluation">
+<meta property="og:title" content="What is meta-evaluation?">
+<meta property="og:description" content="Meta-evaluation is the evaluation of an evaluation: checking whether the test, the human labels, the AI judge and the scoring code behind an AI score can be trusted. A plain guide with public examples.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root { --bg:#f4f4f0; --surface:#fff; --ink:#0f1012; --ink-2:#4b4f56; --ink-3:#868b93; --line:#e1e1da; --accent:#2b45d4; --accent-soft:#c9cff0;
+  --sans:"Geist","Helvetica Neue",Helvetica,Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.gut { padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1200px; margin:0 auto; }
+a { color:inherit; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+.brand { white-space:nowrap; display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:17px; letter-spacing:-0.02em; text-decoration:none; }
+.back { font-size:14.5px; color:var(--ink-2); text-decoration:none; }
+.back:hover { color:var(--ink); }
+article { max-width:44rem; margin:clamp(40px,7vw,88px) auto clamp(64px,9vw,120px); }
+.kicker { font:500 13px/1.4 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:0 0 18px; order:-1; }
+h1 { font-size:clamp(34px,5vw,54px); line-height:1.06; font-weight:400; letter-spacing:-0.03em; margin:0 0 20px; text-wrap:balance; }
+h2 { font-size:26px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px; }
+article p { margin:0 0 18px; color:var(--ink-2); }
+article p strong { color:var(--ink); font-weight:500; }
+article a { text-decoration:underline; text-decoration-color:var(--accent-soft); text-underline-offset:3px; text-decoration-thickness:1.5px; overflow-wrap:anywhere; }
+article a:hover { text-decoration-color:var(--accent); }
+.note { font-size:14.5px; color:var(--ink-3) !important; }
+.note em { font-style:normal; }
+.tbl { overflow-x:auto; margin:8px 0 14px; border-top:1px solid var(--ink); }
+table { width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-weight:500; font-size:13px; color:var(--ink-3); padding:12px 12px 10px 0; border-bottom:1px solid var(--line); vertical-align:bottom; }
+td { padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink-2); }
+td:first-child { color:var(--ink); }
+th:not(:first-child), td:not(:first-child) { text-align:right; }
+.fine { padding-block:20px 40px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-3); }
+.fine a { text-decoration:none; }
+
+.def { font-size:20px; line-height:1.55; color:var(--ink) !important; }
+.def strong { font-weight:600; }
+article ol, article ul { margin:0 0 18px; padding-left:22px; color:var(--ink-2); }
+article li { margin:0 0 10px; }
+article li strong { color:var(--ink); font-weight:500; }
+h3 { font-size:18px; font-weight:500; letter-spacing:-0.01em; margin:26px 0 6px; }
+table.words th:not(:first-child), table.words td:not(:first-child) { text-align:left; }
+table.words tr.us td { color:var(--ink); font-weight:500; }
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kappalabs.co.uk/#org","name":"Kappa Labs","url":"https://kappalabs.co.uk/","logo":"https://kappalabs.co.uk/apple-touch-icon.png","email":"hello@kappalabs.co.uk","description":"Independent assurance for AI evaluations. Kappa Labs finds where AI evaluations and their scoring go wrong, fixes them, and certifies the figure that can safely be quoted, with its margin.","slogan":"Every AI score has a judge. We check the judge.","knowsAbout":["Meta-evaluation","AI evaluation","LLM-as-a-judge","AI benchmark audits","AI assurance","Model risk management","Inter-rater agreement"],"founder":{"@type":"Person","name":"Sandeep Singh Rai","sameAs":["https://orcid.org/0009-0001-3360-9205","https://github.com/WatchTree-19"]},"sameAs":["https://github.com/WatchTree-19","https://doi.org/10.5281/zenodo.23955858"]},{"@type":"Article","headline":"What is meta-evaluation?","description":"Meta-evaluation is the evaluation of an evaluation: checking whether the test, the human labels, the AI judge and the scoring code behind an AI score can be trusted. A plain guide with public examples.","url":"https://kappalabs.co.uk/meta-evaluation","mainEntityOfPage":"https://kappalabs.co.uk/meta-evaluation","datePublished":"2026-11-09","dateModified":"2026-11-09","image":"https://kappalabs.co.uk/og.png","author":{"@id":"https://kappalabs.co.uk/#org"},"publisher":{"@id":"https://kappalabs.co.uk/#org"},"about":{"@id":"https://kappalabs.co.uk/meta-evaluation#term"}},{"@type":"DefinedTerm","@id":"https://kappalabs.co.uk/meta-evaluation#term","name":"Meta-evaluation","alternateName":["Metaevaluation","Meta evaluation"],"description":"The evaluation of an evaluation. In AI, checking whether the score an evaluation reports can be trusted: the test itself, the human labels the score is measured against, the AI judge that gives the verdicts, and the code that reads the judge's reply.","url":"https://kappalabs.co.uk/meta-evaluation"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is meta-evaluation the same as LLM-as-a-judge?","acceptedAnswer":{"@type":"Answer","text":"No. LLM-as-a-judge is a way of scoring outputs with an AI model. Meta-evaluation checks whether that scoring, and the labels and code around it, can be trusted."}},{"@type":"Question","name":"Does a meta-evaluation need access to the model?","acceptedAnswer":{"@type":"Answer","text":"Not at Kappa Labs. We work from the record your evaluation already produced, and never need your model, your systems, credentials or customer data."}},{"@type":"Question","name":"How long does one take?","acceptedAnswer":{"@type":"Answer","text":"One engagement at Kappa Labs takes about four weeks: find, fix, certify."}},{"@type":"Question","name":"Where can I see examples?","acceptedAnswer":{"@type":"Answer","text":"Our public audits of DICES-350, MT-Bench and JudgmentBench, the PyRIT case study and our field notes are all published in full on this site."}}]}]}</script>
+</head>
+<body>
+<div class="gut"><div class="wrap">
+<header class="nav"><a class="brand" href="./" aria-label="Kappa Labs home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>Kappa Labs</a><a class="back" href="./">&larr; Kappa Labs home</a></header>
+<main><article>
+<p class="kicker">Kappa Labs explainer · November 2026</p>
+<h1>What is meta-evaluation?</h1>
+<p class="def"><strong>Meta-evaluation is the evaluation of an evaluation.</strong> In AI, it means checking whether the score an evaluation reports can be trusted: the test itself, the human labels the score is measured against, the AI judge that gives the verdicts, and the code that reads the judge's reply.</p>
+<p>An evaluation measures a model. A meta-evaluation measures the evaluation. It answers one question for anyone who publishes an AI number or relies on one: does this figure hold, and how far?</p>
+<h2>Why it matters</h2>
+<p>Most AI scores are now produced by an AI judge and checked against human labels. Each part can move the headline. Five public examples:</p>
+<ul>
+<li><strong>The judge changes the number.</strong> On the same 300 public jailbreak attempts, eight AI judges put the attack success rate anywhere from 10% to 49%. The human raters say 37%. <a href="https://doi.org/10.5281/zenodo.23955858">Working paper</a></li>
+<li><strong>The judge can decline to grade.</strong> On that benchmark, Claude Opus 5.5 declined to grade 39% of calls, mostly on the attacks that worked (71% against 20%). <a href="field-notes#judge-declines">Field note</a></li>
+<li><strong>Agreement can say less than it seems.</strong> On MT-Bench, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them 80.9%. GPT-4 adds 3.7 points. <a href="mt-bench">Audit</a></li>
+<li><strong>The human reference is a choice.</strong> On DICES-350, six AI graders call 6% to 32% of conversations unsafe where the experts say half, and answering "safe" every time scores 77% against the crowd. <a href="dices-350">Audit</a></li>
+<li><strong>The data can blur what is being measured.</strong> On JudgmentBench, the better answer is also the longer one in 99.3% of comparisons, so the released data cannot yet tell quality from length. <a href="judgmentbench">Audit</a></li>
+</ul>
+<h2>The questions a meta-evaluation asks</h2>
+<ol>
+<li>Does the published figure reproduce from the released record?</li>
+<li>Do the human raters agree with each other, and what happens on the items where they split?</li>
+<li>Does the AI judge do better than a simple rule that never reads the answer?</li>
+<li>What did the judge decline to grade, and where do those gaps fall?</li>
+<li>Does the scoring code read the judge's reply correctly?</li>
+<li>How wide is the margin around the headline once all of this is counted?</li>
+</ol>
+<h2>How it differs from related work</h2>
+<div class="tbl"><table class="words"><thead><tr><th></th><th>What it examines</th><th>The question</th></tr></thead><tbody>
+<tr><td>Evaluation and benchmarking</td><td>A model</td><td>How good is the model?</td></tr>
+<tr><td>Red teaming</td><td>A model under attack</td><td>Can it be made to fail?</td></tr>
+<tr><td>Model validation</td><td>A model in its intended use</td><td>Is it fit for this purpose?</td></tr>
+<tr class="us"><td>Meta-evaluation</td><td>The evaluation itself</td><td>Can the score be trusted?</td></tr>
+</tbody></table></div>
+<h2>Where the term comes from</h2>
+<p>The term comes from evaluation research, where Michael Scriven introduced it in 1969 for the evaluation of evaluations (<a href="https://jmde.journals.publicknowledgeproject.org/index.php/jmde_1/article/view/220">Scriven, "Meta-Evaluation Revisited"</a>). In language technology it took hold in machine translation, where automatic metrics are checked against human judgments. With AI judges now scoring most model outputs, the same question applies to them.</p>
+<h2>Who needs it</h2>
+<p>Anyone who publishes an AI score or relies on one: AI labs and model developers, AI product companies, banks and insurers, benchmark builders, governments and safety institutes, and universities and research groups.</p>
+<h2>What a meta-evaluation produces</h2>
+<p>At Kappa Labs, a graded report in which each part is graded TRUSTED, QUALIFIED or NOT SUPPORTED against fixed thresholds that are the same for every client, and, where the grade earns one, a numbered certificate with the figure that can safely be quoted and its margin. <a href="./#approach">See how an engagement runs</a>.</p>
+<h2>Common questions</h2>
+<h3>Is meta-evaluation the same as LLM-as-a-judge?</h3>
+<p>No. LLM-as-a-judge is a way of scoring outputs with an AI model. Meta-evaluation checks whether that scoring, and the labels and code around it, can be trusted.</p>
+<h3>Does a meta-evaluation need access to the model?</h3>
+<p>Not at Kappa Labs. We work from the record your evaluation already produced, and never need your model, your systems, credentials or customer data.</p>
+<h3>How long does one take?</h3>
+<p>One engagement at Kappa Labs takes about four weeks: find, fix, certify.</p>
+<h3>Where can I see examples?</h3>
+<p>Our public audits of DICES-350, MT-Bench and JudgmentBench, the PyRIT case study and our field notes are all published in full on this site.</p>
+<p class="note" style="margin-top:28px"><em>Kappa Labs is an independent assurance firm for AI evaluations. Follow the field as it develops in our <a href="field-notes">field notes</a>. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></em></p>
+</article></main>
+<footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
+</div></div>
+</body>
+</html>

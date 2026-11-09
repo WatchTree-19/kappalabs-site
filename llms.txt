@@ -1,0 +1,36 @@
+# Kappa Labs
+
+> Kappa Labs is an independent assurance firm for AI evaluations. It finds where AI evaluations and their scoring go wrong, fixes them, and certifies the figure that can safely be quoted, with its margin. The practice is called meta-evaluation: the evaluation of an evaluation.
+
+Key facts:
+
+- Website: https://kappalabs.co.uk. Contact: hello@kappalabs.co.uk.
+- Kappa Labs checks the evaluation behind an AI score: the test itself, the human labels it is scored against, the AI judge, and the code that reads the judge's reply.
+- One engagement takes about four weeks (find, fix, certify) and works from the record the evaluation already produced. Kappa Labs never needs the client's model, systems, credentials or customer data. Every engagement runs under a mutual NDA.
+- Each part of an evaluation is graded TRUSTED, QUALIFIED or NOT SUPPORTED against fixed thresholds that are the same for every client. Where the grade earns one, Kappa Labs issues a numbered certificate with the figure that can safely be quoted and its margin.
+- Clients: AI labs and model developers, AI product companies, banks and insurers, benchmark builders, governments and safety institutes, universities and research groups.
+- Kappa Labs grew out of open-source work on the tools used to evaluate AI: as of 8 November 2026, 85 merged pull requests in other organisations' repositories, 49 of them in AI evaluation and safety tools, including 25 in Microsoft's PyRIT.
+- Kappa Labs is the trading name of Sandeep Singh Rai.
+
+## Explainer
+
+- [What is meta-evaluation?](https://kappalabs.co.uk/meta-evaluation): Definition, why it matters, the questions it asks, how it differs from evaluation, red teaming and model validation, and where the term comes from.
+
+## Public audits
+
+- [DICES-350 (Google Research)](https://kappalabs.co.uk/dices-350): All six AI graders call far fewer conversations unsafe than the experts do (6% to 32% against half) and catch only 11% to 44% of the ones the experts flag. Against the crowd, answering "safe" every time scores 77%.
+- [MT-Bench human judgments (LMSYS)](https://kappalabs.co.uk/mt-bench): On the cases behind the widely quoted 85% agreement, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them 80.9%; GPT-4 adds 3.7 points. The 85% leaves out 35% of comparisons.
+- [JudgmentBench (Stanford with Snorkel AI and Harvey)](https://kappalabs.co.uk/judgmentbench): All four headline numbers reproduce exactly. In 99.3% of comparisons the better answer is also the longer one, so the released data cannot yet tell quality from length.
+
+## Case study
+
+- [PyRIT, before and after](https://kappalabs.co.uk/pyrit): What 25 merged pull requests changed in Microsoft's open-source red-teaming toolkit. Three of the scorer types in PyRIT's web app are ours and a fourth carries our fix. Of 36 published harm-scorer results, 22 beat a scorer that always gives the typical score.
+
+## Research
+
+- [Headline AI Numbers Hide Disagreement (working paper)](https://doi.org/10.5281/zenodo.23955858): On the same 300 public jailbreak attempts, eight AI judges put the attack success rate anywhere from 10% to 49%; the human raters say 37%. Claude Opus 5.5 declined to grade 39% of calls, mostly on the attacks that worked (71% against 20%).
+- [Quorum: A Benchmark for Financial AI under Contested Ground Truth](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819): Scoring financial AI where the experts themselves disagree: S&P, Moody's and Fitch sovereign ratings.
+
+## Field notes
+
+- [Field notes](https://kappalabs.co.uk/field-notes): Questions, findings and developments in meta-evaluation, recorded as they happen. Feed: https://kappalabs.co.uk/feed.xml
