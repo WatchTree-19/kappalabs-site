@@ -12,9 +12,9 @@ Key facts:
 - Kappa Labs grew out of open-source work on the tools used to evaluate AI: as of 8 November 2026, 85 merged pull requests in other organisations' repositories, 49 of them in AI evaluation and safety tools, including 25 in Microsoft's PyRIT.
 - Kappa Labs is the trading name of Sandeep Singh Rai.
 
-## About
+## Team
 
-- [About Kappa Labs](https://kappalabs.co.uk/about): What Kappa Labs does and who runs it. Founded in June 2026 by Sandeep Singh Rai.
+- [Team](https://kappalabs.co.uk/team): What Kappa Labs does and who runs it. Founded in June 2026 by Sandeep Singh Rai.
 
 ## Explainer
 
