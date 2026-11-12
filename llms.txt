@@ -16,6 +16,15 @@ Key facts:
 
 - [Team](https://kappalabs.co.uk/team): What Kappa Labs does and who runs it. Founded in June 2026 by Sandeep Singh Rai.
 
+## Who we work with
+
+- [AI labs and model developers](https://kappalabs.co.uk/ai-labs): Checking safety and capability numbers before release, so the figure in the model card holds when others rerun it.
+- [AI product companies](https://kappalabs.co.uk/ai-product-companies): A certificate on the accuracy or safety claim put in front of customers, procurement teams and regulators.
+- [Banks and insurers](https://kappalabs.co.uk/banks-and-insurers): Independent evidence on the AI a model-risk team approves, built or bought, with the UK, US and EU rules behind it.
+- [Benchmark builders](https://kappalabs.co.uk/benchmark-builders): Checking labels, judges and scoring code before a leaderboard goes public.
+- [Governments and safety institutes](https://kappalabs.co.uk/governments-and-safety-institutes): Independent review of the evaluations behind procurement, policy and public safety reporting.
+- [Universities and research groups](https://kappalabs.co.uk/universities): Replication of published judge and benchmark results, and help designing evaluations that hold up.
+
 ## Explainer
 
 - [What is meta-evaluation?](https://kappalabs.co.uk/meta-evaluation): Definition, why it matters, the questions it asks, how it differs from evaluation, red teaming and model validation, and where the term comes from.

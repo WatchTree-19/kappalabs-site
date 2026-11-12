@@ -131,6 +131,9 @@ em.s { font-family: var(--serif); font-style: italic; font-weight: 400; letter-s
 .who > div { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr) minmax(0, 3fr); gap: 6px 36px; padding: 22px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .who h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.015em; }
 .who p { color: var(--ink-2); font-size: 15.5px; }
+.who h3 a { text-decoration: none; }
+.who h3 a:hover { color: var(--accent); }
+.who h3 a::after { content: " \2192"; color: var(--ink-3); font-weight: 400; }
 .who .ex { font: 12.5px var(--mono); color: var(--ink-3); text-align: right; }
 @media (max-width: 820px) { .who > div { grid-template-columns: 1fr; } .who .ex { text-align: left; } }
 
@@ -316,12 +319,12 @@ footer { padding-block: 64px 48px; }
           <div><p class="lead">The people who publish AI scores and the people who rely on them face the same question: does the number survive an outside check? We work on both sides.</p></div>
         </div>
         <div class="who">
-          <div><h3>AI labs and model developers</h3><p>Check safety and capability numbers before a release, so the figure in the model card holds when others rerun it.</p><span class="ex">Pre-release evaluation review</span></div>
-          <div><h3>AI product companies</h3><p>A certificate on the accuracy or safety claim you put in front of customers, procurement teams and regulators.</p><span class="ex">Vendor claim certification</span></div>
-          <div><h3>Banks and insurers</h3><p>Independent evidence on the AI your model-risk team approves, whether you built it or bought it.</p><span class="ex">Model validation evidence</span></div>
-          <div><h3>Benchmark builders</h3><p>Check labels, judges and scoring code before a leaderboard goes public and everyone starts quoting it.</p><span class="ex">Benchmark release audit</span></div>
-          <div><h3>Governments and safety institutes</h3><p>Independent review of the evaluations behind procurement, policy and public safety reporting.</p><span class="ex">Evaluation assurance</span></div>
-          <div><h3>Universities and research groups</h3><p>Replication of published judge and benchmark results, and help designing evaluations that hold up.</p><span class="ex">Replication studies</span></div>
+          <div><h3><a href="ai-labs">AI labs and model developers</a></h3><p>Check safety and capability numbers before a release, so the figure in the model card holds when others rerun it.</p><span class="ex">Pre-release evaluation review</span></div>
+          <div><h3><a href="ai-product-companies">AI product companies</a></h3><p>A certificate on the accuracy or safety claim you put in front of customers, procurement teams and regulators.</p><span class="ex">Vendor claim certification</span></div>
+          <div><h3><a href="banks-and-insurers">Banks and insurers</a></h3><p>Independent evidence on the AI your model-risk team approves, whether you built it or bought it.</p><span class="ex">Model validation evidence</span></div>
+          <div><h3><a href="benchmark-builders">Benchmark builders</a></h3><p>Check labels, judges and scoring code before a leaderboard goes public and everyone starts quoting it.</p><span class="ex">Benchmark release audit</span></div>
+          <div><h3><a href="governments-and-safety-institutes">Governments and safety institutes</a></h3><p>Independent review of the evaluations behind procurement, policy and public safety reporting.</p><span class="ex">Evaluation assurance</span></div>
+          <div><h3><a href="universities">Universities and research groups</a></h3><p>Replication of published judge and benchmark results, and help designing evaluations that hold up.</p><span class="ex">Replication studies</span></div>
         </div>
       </section>
     </main>
