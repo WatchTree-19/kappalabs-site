@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How far does Claude Mythos 5.2's 2.67 go? · Kappa Labs</title>
+<meta name="description" content="A meta-evaluation of the safety numbers Anthropic published with Claude Fable 5.2 and Claude Mythos 5.2: what the 2.67 misaligned-behaviour score is, and whether its arithmetic can carry the comparison.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%23f4f4f0'/%3E%3Cg transform='translate(3.2 3.0) scale(0.76)'%3E%3Cpath transform='translate(2.0 23.0) scale(0.02778 -0.02778)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%230f1012' stroke='%230f1012' stroke-width='10' stroke-linejoin='round'/%3E%3Ccircle cx='22.4' cy='21.0' r='2.2' fill='%232b45d4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://kappalabs.co.uk/fable-mythos-5-2">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/fable-mythos-5-2">
+<meta property="og:title" content="How far does Claude Mythos 5.2's 2.67 go?">
+<meta property="og:description" content="A meta-evaluation of the safety numbers Anthropic published with Claude Fable 5.2 and Claude Mythos 5.2: what the 2.67 misaligned-behaviour score is, and whether its arithmetic can carry the comparison.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root { --bg:#f4f4f0; --surface:#fff; --ink:#0f1012; --ink-2:#4b4f56; --ink-3:#868b93; --line:#e1e1da; --accent:#2b45d4; --accent-soft:#c9cff0;
+  --sans:"Geist","Helvetica Neue",Helvetica,Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.gut { padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1200px; margin:0 auto; }
+a { color:inherit; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+.brand { white-space:nowrap; display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:17px; letter-spacing:-0.02em; text-decoration:none; }
+.back { font-size:14.5px; color:var(--ink-2); text-decoration:none; }
+.back:hover { color:var(--ink); }
+article { max-width:44rem; margin:clamp(40px,7vw,88px) auto clamp(64px,9vw,120px); }
+.kicker { font:500 13px/1.4 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:0 0 18px; order:-1; }
+h1 { font-size:clamp(34px,5vw,54px); line-height:1.06; font-weight:400; letter-spacing:-0.03em; margin:0 0 20px; text-wrap:balance; }
+h2 { font-size:26px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px; }
+article p { margin:0 0 18px; color:var(--ink-2); }
+article p strong { color:var(--ink); font-weight:500; }
+article a { text-decoration:underline; text-decoration-color:var(--accent-soft); text-underline-offset:3px; text-decoration-thickness:1.5px; overflow-wrap:anywhere; }
+article a:hover { text-decoration-color:var(--accent); }
+.note { font-size:14.5px; color:var(--ink-3) !important; }
+.note em { font-style:normal; }
+.tbl { overflow-x:auto; margin:8px 0 14px; border-top:1px solid var(--ink); }
+table { width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-weight:500; font-size:13px; color:var(--ink-3); padding:12px 12px 10px 0; border-bottom:1px solid var(--line); vertical-align:bottom; }
+td { padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink-2); }
+td:first-child { color:var(--ink); }
+th:not(:first-child), td:not(:first-child) { text-align:right; }
+.fine { padding-block:20px 40px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-3); }
+.fine a { text-decoration:none; }
+
+.def { font-size:20px; line-height:1.55; color:var(--ink) !important; }
+.def strong { font-weight:600; }
+article ol, article ul { margin:0 0 18px; padding-left:22px; color:var(--ink-2); }
+article li { margin:0 0 10px; }
+article li strong { color:var(--ink); font-weight:500; }
+h3 { font-size:18px; font-weight:500; letter-spacing:-0.01em; margin:26px 0 6px; }
+table.words th:not(:first-child), table.words td:not(:first-child) { text-align:left; }
+table.words tr.us td { color:var(--ink); font-weight:500; }
+
+.byline { font:500 13px/1.5 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:-4px 0 22px; }
+.series { border-left:3px solid var(--accent); background:var(--surface); padding:12px 16px; margin:22px 0 26px; font-size:15.5px; color:var(--ink-2); border-radius:0 8px 8px 0; }
+.series b { color:var(--ink); font-weight:500; }
+.voice p { font-size:17.5px; }
+.ref { color:var(--ink-3); font-size:14px; white-space:nowrap; }
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kappalabs.co.uk/#org","name":"Kappa Labs","url":"https://kappalabs.co.uk/"},{"@type":"Article","headline":"How far does Claude Mythos 5.2's 2.67 go?","description":"A meta-evaluation of the safety numbers Anthropic published with Claude Fable 5.2 and Claude Mythos 5.2: what the 2.67 misaligned-behaviour score is, and whether its arithmetic can carry the comparison.","url":"https://kappalabs.co.uk/fable-mythos-5-2","mainEntityOfPage":"https://kappalabs.co.uk/fable-mythos-5-2","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://kappalabs.co.uk/og.png","author":{"@type":"Person","name":"Sandeep Singh Rai","url":"https://kappalabs.co.uk/team"},"publisher":{"@id":"https://kappalabs.co.uk/#org"},"isPartOf":{"@type":"Blog","@id":"https://kappalabs.co.uk/field-notes#blog"},"about":[{"@type":"SoftwareApplication","name":"Claude Mythos 5.2"},{"@type":"SoftwareApplication","name":"Claude Fable 5.2"},{"@type":"DefinedTerm","name":"Meta-evaluation","url":"https://kappalabs.co.uk/meta-evaluation"}],"citation":["https://www.anthropic.com/news/claude-fable-and-mythos-5-2","https://www.anthropic.com/document/claude-fable-5-2-mythos-5-2-system-card"]}]}</script>
+</head>
+<body>
+<div class="gut"><div class="wrap">
+<header class="nav"><a class="brand" href="./" aria-label="Kappa Labs home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>Kappa Labs</a><a class="back" href="./">&larr; Kappa Labs home</a></header>
+<main><article>
+<p class="kicker">Field notes &middot; Claude Fable 5.2 and Mythos 5.2, note 1 &middot; 12 November 2026</p>
+<h1>How far does Claude Mythos 5.2&rsquo;s 2.67 go?</h1>
+<p class="byline">By Sandeep Singh Rai, Founder</p>
+<div class="voice">
+<p>Garnering from the 264 pages Anthropic published alongside Claude Fable 5.2 and Claude Mythos 5.2, I believe credit is due first, for a system card that places 95% intervals on its audit scores, gives a section to the audit&rsquo;s own blind spots and carries the UK AI Security Institute&rsquo;s findings in AISI&rsquo;s own words is what makes a meta-evaluation possible at all.</p>
+<p>On Anthropic&rsquo;s automated behavioural audit, Mythos 5.2 scores <b>2.67</b> for misaligned behaviour, on a scale of 1 to 10 where lower is better, whilst Claude Opus 5.5 scores 2.79, Claude Sonnet 5.5 3.10 and Claude Mythos 5.1 3.28. The question we turn our attention to, however, is not which model ranks higher but what the number is, and whether the arithmetic underneath it can carry the comparison it is asked to make.</p>
+</div>
+<p class="series"><b>The first of our notes on Claude Fable 5.2 and Mythos 5.2. More to come.</b> Fable 5.2 is the public version of the same model with added safeguards; Anthropic reports these audit numbers for Mythos 5.2 and expects Fable 5.2 to behave similarly.</p>
+
+<h2>What the number is</h2>
+<ul>
+<li><strong>It ranks models; it is not a rate.</strong> The card says the absolute scores reflect the mix of scenarios and are &ldquo;valuable primarily for comparing models&rdquo;. The scale starts at 1, not 0. <span class="ref">(section 6.4)</span></li>
+<li><strong>An AI judge scores every transcript on over 100 dimensions.</strong> The card doesn&rsquo;t name the judge used for this audit, or say how often it agrees with human reviewers. <span class="ref">(6.4)</span></li>
+<li><strong>The judge skips dimensions that don&rsquo;t apply</strong>, so each average covers only the transcripts that dimension was scored on. How many were skipped is not given. <span class="ref">(6.4, footnote 4)</span></li>
+<li><strong>The model often knows it is being tested.</strong> White-box evidence suggests it did in up to <b>43%</b> of audit transcripts. On AISI&rsquo;s supply-chain test it considered that it might be in an alignment test in <b>96%</b> of runs and made no unsanctioned attacks; AISI notes the zero may come from that awareness. <span class="ref">(summary; 6.5.7)</span></li>
+<li><strong>Two sandbox numbers.</strong> The launch post leads with <b>3.1%</b>: scenarios where the model used credentials placed outside its sandbox. The card also reports how often it reached outside at all: <b>31%</b>, against 20% for Opus 5.5 and 21% for Sonnet 5.5, falling to 1.2% once the sandbox rules were in the system prompt. Escapes are detected by a fixed rule, not an AI judge. <span class="ref">(6.5.1)</span></li>
+</ul>
+
+<h2>Is the arithmetic right?</h2>
+<ul>
+<li><strong>The interval method isn&rsquo;t stated.</strong> Each of about 1,850 scenarios is run between 1 and 14 times, and runs of the same scenario resemble each other. Elsewhere the card names its interval method, and in one section it says its bootstrap allows for repeated draws from the same starting point. For the audit scores it doesn&rsquo;t say. If repeat runs are counted as independent, the bars are too narrow, and a gap like 2.67 against 2.79 looks firmer than it is.</li>
+<li><strong>A 1 to 10 rating is averaged.</strong> A mean treats the step from 1 to 2 as worth the same as the step from 8 to 9, which a rating scale doesn&rsquo;t promise. With most transcripts judged on dimensions that rarely apply to them, many scores are likely to sit at the floor, so a small number of transcripts can move the mean. The share of transcripts at each score would say more.</li>
+<li><strong>Uneven weighting.</strong> A scenario run 14 times counts 14 times in the average, while one run once counts once. The card reports &ldquo;up to&rdquo; about 4,100 investigations per model and doesn&rsquo;t say whether every model got the same scenarios the same number of times. If not, part of a gap between models can come from the scenario mix.</li>
+<li><strong>Many comparisons, one bar.</strong> &ldquo;Best or tied on every metric&rdquo; is read across dozens of metrics and four models, each with a 95% interval, and at that scale some gaps will look real by chance. The card doesn&rsquo;t say how &ldquo;tied&rdquo; is decided. On cooperation with misuse, Mythos 5.2 scores 1.72 against Opus 5.5&rsquo;s 1.68. <span class="ref">(6.4.1)</span></li>
+<li><strong>No interval on the sandbox rates.</strong> The 1,829 scenarios are built from about 200 tasks in 28 sandbox environments, so they come in groups. A simple interval on 3.1% runs from about <b>2.4% to 4.0%</b>, and grouping by environment would widen it. That already covers Opus 5.5&rsquo;s 3.3%, so &ldquo;about as often&rdquo; stands. &ldquo;Significantly less often&rdquo; than Mythos 5.1 (21%) also stands, though the card doesn&rsquo;t say which test was used. <span class="ref">(6.5.1)</span></li>
+</ul>
+
+<h2>Where this leaves 2.67</h2>
+<div class="voice">
+<p>Having been through the card, I hold 2.67 to be a carefully documented comparison between Claude models, and in that capacity it serves its purpose well. It is not yet, however, a figure an outside reader can quote as a measure of how safe the model is, and in fairness to Anthropic, the card says much the same of its own scores. Anthropic has not released the scenarios, transcripts or judge scores, so nothing here is recomputed, and each point above is a question the card leaves open rather than an error found. By the same token, the remedy is within reach, for five additions would turn a well-made ranking into a number the public, and those who build on these models, can rely on:</p>
+</div>
+<ul>
+<li>The interval method, and whether repeat runs of a scenario are grouped.</li>
+<li>The share of transcripts at each score, alongside the mean.</li>
+<li>The same scenarios, run the same number of times, for every model compared.</li>
+<li>The judge&rsquo;s agreement with human reviewers, and how many scores it left out.</li>
+<li>The same scenarios scored by an outside lab.</li>
+</ul>
+<div class="voice">
+<p>In due course, as safety numbers come to carry the weight that accuracy figures once did, I believe they deserve the same scrutiny we already give any other figure people are asked to trust.</p>
+</div>
+<p class="series"><b>More to come on Claude Fable 5.2.</b> Follow the series in our <a href="field-notes">field notes</a> or by <a href="feed.xml">feed</a>.</p>
+
+<h2>Sources</h2>
+<p>Anthropic, <a href="https://www.anthropic.com/news/claude-fable-and-mythos-5-2">&ldquo;Claude Fable 5.2 and Claude Mythos 5.2&rdquo;</a>, 9 November 2026, and the <a href="https://www.anthropic.com/document/claude-fable-5-2-mythos-5-2-system-card">Claude Fable 5.2 &amp; Claude Mythos 5.2 System Card</a> (sections 6.4, 6.5.1 and 6.5.7). Credit to Anthropic for the detail in the card, and to UK AISI, METR and Frontier Design for testing before release. The simple interval is a Wilson interval on 57 of 1,829 scenarios. For what we mean by meta-evaluation, see <a href="meta-evaluation">What is meta-evaluation?</a></p>
+<p class="note" style="margin-top:28px"><em>Kappa Labs is an independent assurance firm for AI evaluations. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></em></p>
+</article></main>
+<footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
+</div></div>
+</body>
+</html>

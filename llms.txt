@@ -49,3 +49,4 @@ Key facts:
 ## Field notes
 
 - [Field notes](https://kappalabs.co.uk/field-notes): Questions, findings and developments in meta-evaluation, recorded as they happen. Feed: https://kappalabs.co.uk/feed.xml
+- [How far does Claude Mythos 5.2's 2.67 go?](https://kappalabs.co.uk/fable-mythos-5-2): A meta-evaluation of the safety numbers Anthropic published with Claude Fable 5.2 and Mythos 5.2 (12 November 2026): the 2.67 audit score ranks models rather than giving a rate; the audit's AI judge and interval method are not described; the model suspected testing in up to 43% of audit transcripts; the sandbox rate is 3.1% for using outside credentials and 31% for reaching outside at all. First of a series.
