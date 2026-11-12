@@ -127,24 +127,28 @@ em.s { font-family: var(--serif); font-style: italic; font-weight: 400; letter-s
 @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
 
 /* who */
-.who { border-top: 1px solid var(--ink); margin-top: 56px; }
-.who > div { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr) minmax(0, 3fr); gap: 6px 36px; padding: 22px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
-.who h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.015em; }
-.who p { color: var(--ink-2); font-size: 15.5px; }
+.who { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--ink); margin-top: 56px; }
+.who > div { padding: 26px 28px 30px 0; display: grid; gap: 10px; align-content: start; border-bottom: 1px solid var(--line); }
+.who > div:not(:nth-child(3n+1)) { padding-left: 28px; border-left: 1px solid var(--line); }
+.who h3 { font-size: 21px; font-weight: 500; letter-spacing: -0.015em; }
+.who p { color: var(--ink-2); font-size: 15px; }
+.who .ex { font: 12.5px var(--mono); color: var(--ink-3); }
 .who h3 a { text-decoration: none; }
 .who h3 a:hover { color: var(--accent); }
 .who h3 a::after { content: " \2192"; color: var(--ink-3); font-weight: 400; }
-.who .ex { font: 12.5px var(--mono); color: var(--ink-3); text-align: right; }
-@media (max-width: 820px) { .who > div { grid-template-columns: 1fr; } .who .ex { text-align: left; } }
+@media (max-width: 900px) { .who { grid-template-columns: 1fr 1fr; } .who > div:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; } .who > div:nth-child(2n) { padding-left: 24px; border-left: 1px solid var(--line); } }
+@media (max-width: 600px) { .who { grid-template-columns: 1fr; } .who > div:nth-child(2n) { padding-left: 0; border-left: 0; } }
 
 /* approach */
 .band { background: var(--surface); border-block: 1px solid var(--line); }
-.steps { margin-top: 56px; border-top: 1px solid var(--ink); }
-.step { display: grid; grid-template-columns: 150px minmax(0, 2fr) minmax(0, 6fr); gap: 8px 36px; padding: 28px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(24px, 4vw, 56px); margin-top: 56px; }
+.step { display: grid; gap: 14px; align-content: start; }
 .step .n { font: 13px var(--mono); color: var(--accent); }
 .step h3 { font-size: 34px; letter-spacing: -0.02em; font-family: var(--serif); font-style: italic; }
-.step p { color: var(--ink-2); max-width: 46rem; }
-@media (max-width: 760px) { .step { grid-template-columns: 1fr; } }
+.step p { color: var(--ink-2); }
+.step .bar { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.step .bar i { display: block; height: 100%; background: var(--accent); }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
 
 /* product shot */
 .shot { margin-top: 64px; display: grid; gap: 14px; }
@@ -338,9 +342,9 @@ footer { padding-block: 64px 48px; }
       <div><p class="lead">One engagement, about four weeks, from the record your evaluation already produced. We never need your model, your systems, credentials or customer data. Every engagement runs under a mutual NDA, signed before any record is shared, and we are equally happy to sign yours.</p></div>
     </div>
     <div class="steps">
-      <div class="step"><span class="n">Weeks 1&ndash;2</span><h3>Find</h3><p>We check the evaluation behind your figure: the test itself, the human labels it is scored against, the AI judge, and the code that reads the judge's reply.</p></div>
-      <div class="step"><span class="n">Weeks 2&ndash;3</span><h3>Fix</h3><p>You get a fix list ordered by what holds the figure back, and we work through it with your team, then re-score. <a href="pyrit">See it in practice: PyRIT, before and after &rarr;</a></p></div>
-      <div class="step"><span class="n">Week 4</span><h3>Certify</h3><p>We repeat the full audit on the revised record and, where the grade earns one, issue a numbered certificate with the figure that can safely be quoted and its margin.</p></div>
+      <div class="step"><div class="bar"><i style="width:33%"></i></div><span class="n">Weeks 1&ndash;2</span><h3>Find</h3><p>We check the evaluation behind your figure: the test itself, the human labels it is scored against, the AI judge, and the code that reads the judge's reply.</p></div>
+      <div class="step"><div class="bar"><i style="width:66%"></i></div><span class="n">Weeks 2&ndash;3</span><h3>Fix</h3><p>You get a fix list ordered by what holds the figure back, and we work through it with your team, then re-score. <a href="pyrit">See it in practice: PyRIT, before and after &rarr;</a></p></div>
+      <div class="step"><div class="bar"><i style="width:100%"></i></div><span class="n">Week 4</span><h3>Certify</h3><p>We repeat the full audit on the revised record and, where the grade earns one, issue a numbered certificate with the figure that can safely be quoted and its margin.</p></div>
     </div>
 
     <div class="shot">
