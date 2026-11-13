@@ -45,6 +45,7 @@ Key facts:
 - [DICES-350 (Google Research)](https://kappalabs.co.uk/dices-350): All six AI graders call far fewer conversations unsafe than the experts do (6% to 32% against half) and catch only 11% to 44% of the ones the experts flag. Against the crowd, answering "safe" every time scores 77%.
 - [MT-Bench human judgments (LMSYS)](https://kappalabs.co.uk/mt-bench): On the cases behind the widely quoted 85% agreement, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them 80.9%; GPT-4 adds 3.7 points. The 85% leaves out 35% of comparisons.
 - [JudgmentBench (Stanford with Snorkel AI and Harvey)](https://kappalabs.co.uk/judgmentbench): All four headline numbers reproduce exactly. In 99.3% of comparisons the better answer is also the longer one, so the released data cannot yet tell quality from length.
+- [Kensho VERDICTS (Kensho, owned by S&P Global)](https://kappalabs.co.uk/kensho-verdicts): The published figures reproduce exactly. Three expert analysts gave the same verdict on 48% of 960 finance answers, and one in six has no verdict; the published accuracy counts those as not correct, so GPT-4o's error rate lies between 17.5% and 31.9%.
 
 ## Case study
 

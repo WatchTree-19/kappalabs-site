@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kensho VERDICTS · Kappa Labs public audit</title>
+<meta name="description" content="Kensho&#x27;s finance answers marked by expert analysts: the published figures reproduce exactly, all three experts agree on 48% of answers, and one in six has no verdict.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%230f1012'/%3E%3Cpath transform='translate(6.70 20.75) scale(0.02153 -0.02153)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%23fff' stroke='%23fff' stroke-width='18' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://kappalabs.co.uk/kensho-verdicts">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/kensho-verdicts">
+<meta property="og:title" content="&quot;Judged by human experts&quot;: how often finance professionals agree on whether an AI answer is right">
+<meta property="og:description" content="Kensho&#x27;s finance answers marked by expert analysts: the published figures reproduce exactly, all three experts agree on 48% of answers, and one in six has no verdict.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root { --bg:#f4f4f0; --surface:#fff; --ink:#0f1012; --ink-2:#4b4f56; --ink-3:#868b93; --line:#e1e1da; --accent:#2b45d4; --accent-soft:#c9cff0;
+  --sans:"Geist","Helvetica Neue",Helvetica,Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.gut { padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1200px; margin:0 auto; }
+a { color:inherit; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+.brand { white-space: nowrap; display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:17px; letter-spacing:-0.02em; text-decoration:none; }
+.back { font-size:14.5px; color:var(--ink-2); text-decoration:none; }
+.back:hover { color:var(--ink); }
+article { max-width:44rem; margin:clamp(40px,7vw,88px) auto clamp(64px,9vw,120px); }
+.kicker { font:500 13px/1.4 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:0 0 18px; order:-1; }
+h1 { font-size:clamp(34px,5vw,54px); line-height:1.06; font-weight:400; letter-spacing:-0.03em; margin:0 0 20px; text-wrap:balance; }
+h2 { font-size:26px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px; }
+article p { margin:0 0 18px; color:var(--ink-2); }
+article p strong { color:var(--ink); font-weight:500; }
+article a { text-decoration:underline; text-decoration-color:var(--accent-soft); text-underline-offset:3px; text-decoration-thickness:1.5px; overflow-wrap:anywhere; }
+article a:hover { text-decoration-color:var(--accent); }
+.note { font-size:14.5px; color:var(--ink-3) !important; }
+.note em { font-style:normal; }
+.tbl { overflow-x:auto; margin:8px 0 14px; border-top:1px solid var(--ink); }
+table { width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-weight:500; font-size:13px; color:var(--ink-3); padding:12px 12px 10px 0; border-bottom:1px solid var(--line); vertical-align:bottom; }
+td { padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink-2); }
+td:first-child { color:var(--ink); }
+th:not(:first-child), td:not(:first-child) { text-align:right; }
+.fine { padding-block:20px 40px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-3); }
+.fine a { text-decoration:none; }
+h3 { font-size:19px; font-weight:500; letter-spacing:-0.01em; margin:34px 0 10px; }
+article ul { margin:0 0 20px; padding-left:20px; color:var(--ink-2); }
+article li { margin:0 0 10px; }
+article li strong { color:var(--ink); font-weight:500; }
+article code { font-family:"Geist Mono", ui-monospace, monospace; font-size:0.88em; background:var(--accent-soft, #e9ecfb); padding:1px 5px; border-radius:4px; }
+
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://kappalabs.co.uk/#org", "name": "Kappa Labs", "url": "https://kappalabs.co.uk/", "logo": "https://kappalabs.co.uk/apple-touch-icon.png", "email": "hello@kappalabs.co.uk", "description": "Independent assurance for AI evaluations. Kappa Labs finds where AI evaluations and their scoring go wrong, fixes them, and certifies the figure that can safely be quoted, with its margin.", "slogan": "Every AI score has a judge. We check the judge.", "knowsAbout": ["Meta-evaluation", "AI evaluation", "LLM-as-a-judge", "AI benchmark audits", "AI assurance", "Model risk management", "Inter-rater agreement"], "founder": {"@type": "Person", "name": "Sandeep Singh Rai", "url": "https://kappalabs.co.uk/team", "sameAs": ["https://orcid.org/0009-0001-3360-9205", "https://github.com/WatchTree-19", "https://www.linkedin.com/in/sandeeprai1"]}, "sameAs": ["https://github.com/WatchTree-19", "https://doi.org/10.5281/zenodo.23955858"]}, {"@type": "Report", "headline": "\"Judged by human experts\": how often finance professionals agree on whether an AI answer is right", "description": "Kensho's finance answers marked by expert analysts: the published figures reproduce exactly, all three experts agree on 48% of answers, and one in six has no verdict.", "url": "https://kappalabs.co.uk/kensho-verdicts", "mainEntityOfPage": "https://kappalabs.co.uk/kensho-verdicts", "datePublished": "2026-11-13", "dateModified": "2026-11-13", "image": "https://kappalabs.co.uk/og.png", "author": {"@id": "https://kappalabs.co.uk/#org"}, "publisher": {"@id": "https://kappalabs.co.uk/#org"}, "isPartOf": {"@type": "WebSite", "@id": "https://kappalabs.co.uk/#site"}}]}</script>
+<script defer src="/kl.js"></script>
+</head>
+<body>
+<div class="gut"><div class="wrap">
+<header class="nav"><a class="brand" href="./" aria-label="Kappa Labs home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>Kappa Labs</a><a class="back" href="./#audits">&larr; All public audits</a></header>
+<main><article>
+<p class="kicker">Kappa Labs public audit no. 4 · November 2026</p>
+<h1>"Judged by human experts": how often finance professionals agree on whether an AI answer is right</h1>
+<p>When a bank or its vendor says an AI assistant "answers finance questions correctly X% of the time", someone marked the answers. Kensho, the AI company owned by S&amp;P Global, published one of the most careful versions of that exercise in "No Free Labels" (Krumdick et al.). For its 160 business and finance questions (BFF-Bench), financial professionals wrote the questions and reference answers, six AI models answered them, and each of the 960 finance answers was marked three times from a pool of nine financial analysts, as Correct, Incorrect or Not sure. The marks were then used to test AI judges. In August 2026 Kensho released all three marks for every answer under an Apache 2.0 licence, which is exactly what makes a check like this possible. Credit to them for that, and for stating in the paper that answers without a consensus were set aside as ambiguous.</p>
+<h2>What we found</h2>
+<p><strong>1. The published figures reproduce.</strong> Every count in the paper's Table 1 and all twelve accuracy figures in Table 2 come out of the released marks exactly, as do the 1,036 answers and 604 answer pairs the AI judges were tested on.</p>
+<p><strong>2. On finance, the three experts gave the same verdict on fewer than half the answers.</strong> All three said Correct, or all three said Incorrect, on 459 of 960 answers: 48% (95% interval 44% to 52%). On the maths and reasoning answers, which the paper's authors marked themselves, the figure is 74%.</p>
+<div class="tbl"><table><thead><tr><th>Finance answers</th><th>Count</th><th>Share</th></tr></thead><tbody><tr><td>All three experts gave the same verdict</td><td>459</td><td>47.8%</td></tr><tr><td>Two agreed and the third was not sure</td><td>233</td><td>24.3%</td></tr><tr><td>One said Correct and another said Incorrect</td><td>187</td><td>19.5%</td></tr><tr><td>Two or three were not sure</td><td>81</td><td>8.4%</td></tr></tbody></table></div>
+<p>One expert mark in six on finance was "Not sure" (16.6%). On the maths and reasoning answers, marked by the paper's authors, it was one in fifteen (6.5%).</p>
+<p><strong>3. One finance answer in six has no expert verdict, and every judge figure is measured on the rest.</strong> For 152 of the 960 finance answers (15.8%, 95% interval 13% to 19%), no two experts gave the same verdict of Correct or Incorrect. The paper sets these aside, as it says, so AI judges are scored on the other 808. Of those 808, 349 (43%) rest on two experts out of three. In the paper's head-to-head test, where a judge picks the better of two answers, both answers were marked unanimously in 131 of the 442 finance pairs (30%).</p>
+<p><strong>4. The published accuracy treats an answer with no verdict as not correct.</strong> The paper's best finance result is GPT-4o at 68.1% correct. That is the share of GPT-4o's 160 finance answers that a majority of experts marked Correct. A majority marked 17.5% Incorrect, and the other 14.4% have no verdict. So the share of GPT-4o's finance answers that were wrong, by the experts' majority, lies between 17.5% and 31.9%, depending on how the unsettled answers are counted. On the answers the experts did settle, GPT-4o was right 79.6% of the time. The same split applies to every model:</p>
+<div class="tbl"><table><thead><tr><th>Model</th><th>Majority Correct (the published figure)</th><th>Majority Incorrect</th><th>No verdict</th></tr></thead><tbody><tr><td>GPT-4o</td><td>68.1%</td><td>17.5%</td><td>14.4%</td></tr><tr><td>Phi-4</td><td>51.9%</td><td>32.5%</td><td>15.6%</td></tr><tr><td>Llama 3.3 70B</td><td>46.3%</td><td>38.1%</td><td>15.6%</td></tr><tr><td>Qwen 2.5 7B</td><td>46.3%</td><td>40.6%</td><td>13.1%</td></tr><tr><td>Yi 1.5 34B</td><td>36.3%</td><td>44.4%</td><td>19.4%</td></tr><tr><td>Gemma 2 2B</td><td>35.0%</td><td>48.1%</td><td>16.9%</td></tr></tbody></table></div>
+<p><strong>5. With margins, the finance ranking has one clear leader and two ties.</strong> Each published accuracy carries about plus or minus 8 points. GPT-4o is clearly ahead, 16 points above Phi-4 (95% interval 8 to 25). Phi-4, Llama 3.3 70B and Qwen 2.5 7B cannot be told apart (gaps of 0 to 6 points, every interval includes zero), and neither can Yi 1.5 34B and Gemma 2 2B (1 point, interval −7 to +9).</p>
+<p><strong>6. The paper's main finding holds, and the experts' own agreement shows how far a judge can be tested.</strong> The paper reports that an AI judge given the expert-written reference answer agrees with the experts far better than one without it: Cohen's kappa of 0.63 to 0.78 across five judges with the reference, against 0.24 to 0.47 without (Table 6, first prompt). For scale, two experts who both gave a verdict agree at kappa 0.78 on those same answers (0.74 to 0.82), and an expert checked against the other two, where they agree, reaches 0.86 (0.82 to 0.89). The best judge with a reference, Llama 3.3 70B at 0.78, comes close to the experts; these marks cannot show it matches them.</p>
+<p class="note"><em>Intervals resample whole conversations, so they allow for each of the 80 finance conversations carrying twelve answers.</em></p>
+<h2>Why it matters</h2>
+<p>A bank validating an AI assistant on accounting and finance questions will do what Kensho did: have its own experts mark the answers, then check an automated judge against them. This is a careful, well-resourced version of that exercise, and it shows what to expect: experts who are unanimous on about half the answers, an error rate that moves by 14 points for the best model, and a judge that can only be shown to be as good as the experts agree with each other. Three numbers are worth asking for beside any accuracy figure that says "judged by experts": how often the experts agreed, how many answers got no verdict and how they were counted, and the margin on the figure.</p>
+<p class="note"><em>Kappa Labs runs independent audits of AI evaluation scores. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></em></p>
+<p class="note"><em>Data: <a href="https://huggingface.co/datasets/kensho/VERDICTS">kensho/VERDICTS</a> and <a href="https://huggingface.co/datasets/kensho/VERDICTSPairwise">kensho/VERDICTSPairwise</a> on Hugging Face, Apache 2.0. Paper: Krumdick, Lovering, Reddy, Ebner and Tanner, "No Free Labels: Limitations of LLM-as-a-Judge Without Human Grounding", <a href="https://arxiv.org/abs/2503.05061">arXiv 2503.05061</a> (v2).</em></p>
+</article></main>
+<footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
+</div></div>
+</body>
+</html>
