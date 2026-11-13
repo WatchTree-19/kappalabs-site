@@ -2,8 +2,8 @@
    Cloudflare Web Analytics counts visits, pages, referrers and countries.
    GoatCounter counts the events below, each as an event path such as "copy-email". */
 (function () {
-  var CF_TOKEN = "";          // Cloudflare Web Analytics token
-  var GC_CODE = "";           // GoatCounter site code (the part before .goatcounter.com)
+  var CF_TOKEN = "aad0ce0934964de6956e8cea3fa834ed";          // Cloudflare Web Analytics token
+  var GC_CODE = "kappalabs";           // GoatCounter site code (the part before .goatcounter.com)
 
   function add(src, attrs) {
     var s = document.createElement("script");
