@@ -65,7 +65,7 @@ th:not(:first-child), td:not(:first-child) { text-align:right; }
 <h1>"Over 80% agreement": what MT-Bench's famous judge number counts</h1>
 <p class="byline">By Sandeep Singh Rai, Founder</p>
 <div class="voice">
-<p>MT-Bench is where "LLM as a judge" became standard practice. Its paper (Zheng et al., NeurIPS 2023) reports that GPT-4, judging which of two chatbot answers is better, agrees with expert humans "over 80%" of the time, the same as experts agree with each other, and in elaboration LMSYS released every vote behind that figure, being 3,355 human judgments (2,668 from the expert raters behind the headline) and 2,400 GPT-4 verdicts across 80 questions, which is exactly what makes a check like this possible. I believe credit is due to them for that, and further for reporting the answer-order effect themselves (section 3.3) and stating the tie rule under Table 5.</p>
+<p>MT-Bench is where "LLM as a judge" became standard practice. Its paper (Zheng et al., NeurIPS 2023) reports that GPT-4, judging which of two chatbot answers is better, agrees with expert humans "over 80%" of the time, the same as experts agree with each other, and in elaboration LMSYS released every vote behind that figure, being 3,355 human judgments (2,668 from the expert raters behind the headline) and 2,400 GPT-4 verdicts across 80 questions, which is exactly what makes a check like this possible. It is to their credit that they did so, and further that the paper reports the answer-order effect itself (section 3.3) and states the tie rule under Table 5.</p>
 </div>
 <h2>What we found</h2>
 <p><strong>1. The published figures reproduce exactly.</strong> Every agreement rate and every vote count in the paper's Table 5 comes out of the released data to the vote.</p>
@@ -77,7 +77,7 @@ th:not(:first-child), td:not(:first-child) { text-align:right; }
 <p class="note"><em>Intervals resample whole questions, so they allow for the 80 questions each carrying many votes.</em></p>
 <h2>Why it matters</h2>
 <div class="voice">
-<p>"Our judge agrees with humans X% of the time" is the sentence that sells most automated evaluations, and MT-Bench shows that the claim can be true whilst still saying less than it seems. What matters, I believe, is how many cases it was computed on, how the judge and the humans did on the rest, and how far the judge beats a rule that never looks at the answers. Those three numbers are worth asking for alongside any judge's agreement figure, and in due course I would hope to see them reported beside it as standard.</p>
+<p>"Our judge agrees with humans X% of the time" is the sentence that sells most automated evaluations, and MT-Bench shows that the claim can be true whilst still saying less than it seems. What matters is how many cases it was computed on, how the judge and the humans did on the rest, and how far the judge beats a rule that never looks at the answers. Those three numbers are worth asking for alongside any judge's agreement figure, and it is my hope that they come to be given as a matter of course.</p>
 </div>
 <p class="note"><em>Kappa Labs runs independent audits of AI evaluation scores. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></em></p>
 <p class="note"><em>Data: lmsys/mt_bench_human_judgments on Hugging Face, CC BY 4.0. Paper: Zheng et al., "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena", NeurIPS 2023 Datasets and Benchmarks, <a href="https://arxiv.org/abs/2306.05685">arXiv 2306.05685</a> (v4, Table 5).</em></p>
