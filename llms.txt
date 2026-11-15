@@ -53,7 +53,7 @@ Key facts:
 
 ## Research
 
-- [Headline AI Numbers Hide Disagreement (working paper)](https://doi.org/10.5281/zenodo.23955858): On the same 300 public jailbreak attempts, eight AI judges put the attack success rate anywhere from 10% to 49%; the human raters say 37%. Claude Opus 5.5 declined to grade 39% of calls, mostly on the attacks that worked (71% against 20%).
+- [Headline AI Numbers Hide Disagreement (working paper)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7684405): On the same 300 public jailbreak attempts, eight AI judges put the attack success rate anywhere from 10% to 49%; the human raters say 37%. Claude Opus 5.5 declined to grade 39% of calls, mostly on the attacks that worked (71% against 20%).
 - [Quorum: A Benchmark for Financial AI under Contested Ground Truth](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819): Scoring financial AI where the experts themselves disagree: S&P, Moody's and Fitch sovereign ratings.
 
 ## Field notes

@@ -84,7 +84,7 @@ table.words tr.us td { color:var(--ink); font-weight:500; }
 <p>The judge is given the task, the answer to grade, and instructions or a rubric. It returns a verdict such as pass or fail, a score, or a preference between two answers. Code then reads that reply and turns it into the reported number.</p>
 <h2>Five things to check before relying on a judge</h2>
 <ul>
-<li><strong>Which judge was used.</strong> On the same 300 public jailbreak attempts, eight AI judges put the attack success rate anywhere from 10% to 49%. The human raters say 37%. <a href="https://doi.org/10.5281/zenodo.23955858">Working paper</a></li>
+<li><strong>Which judge was used.</strong> On the same 300 public jailbreak attempts, eight AI judges put the attack success rate anywhere from 10% to 49%. The human raters say 37%. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7684405">Working paper</a></li>
 <li><strong>What it declined to grade.</strong> Claude Opus 5.5 declined to grade 39% of calls on that benchmark, mostly on the attacks that worked (71% against 20%). <a href="field-notes#judge-declines">Field note</a></li>
 <li><strong>Whether it beats a simple rule.</strong> On MT-Bench, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them 80.9%. GPT-4 adds 3.7 points. <a href="mt-bench">Audit</a></li>
 <li><strong>Whether the verdict is stable.</strong> On MT-Bench, GPT-4's verdict flipped in 16% of cases when the two answers swapped places. <a href="mt-bench">Audit</a></li>
