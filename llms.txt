@@ -27,6 +27,8 @@ Key facts:
 
 ## Explainer
 
+- [The Meta-Evaluation Wiki](https://kappalabs.co.uk/wiki): A plain reference to meta-evaluation: what it is, where it comes from, the terms it uses and worked examples on public benchmarks. Anyone can suggest an edit.
+- [A history of meta-evaluation](https://kappalabs.co.uk/history-of-meta-evaluation): Checking the checker is older than the word for it, from the auditors of ancient Athens to the AI judges that now score other AI systems.
 - [What is meta-evaluation?](https://kappalabs.co.uk/meta-evaluation): Definition, why it matters, the questions it asks, how it differs from evaluation, red teaming and model validation, and where the term comes from.
 
 ## Glossary

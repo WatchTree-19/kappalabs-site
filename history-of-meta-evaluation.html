@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A history of meta-evaluation: how every field learned to check its checkers · Kappa Labs</title>
+<meta name="description" content="Checking the checker is older than the word for it. A short history of meta-evaluation, from the auditors of ancient Athens to the AI judges that now score other AI systems.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%23f4f4f0'/%3E%3Cg transform='translate(3.2 3.0) scale(0.76)'%3E%3Cpath transform='translate(2.0 23.0) scale(0.02778 -0.02778)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%230f1012' stroke='%230f1012' stroke-width='10' stroke-linejoin='round'/%3E%3Ccircle cx='22.4' cy='21.0' r='2.2' fill='%232b45d4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://kappalabs.co.uk/history-of-meta-evaluation">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/history-of-meta-evaluation">
+<meta property="og:title" content="A history of meta-evaluation: how every field learned to check its checkers">
+<meta property="og:description" content="Checking the checker is older than the word for it. A short history of meta-evaluation, from the auditors of ancient Athens to the AI judges that now score other AI systems.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
+<style>
+:root { --bg:#f4f4f0; --surface:#fff; --ink:#0f1012; --ink-2:#4b4f56; --ink-3:#868b93; --line:#e1e1da; --accent:#2b45d4; --accent-soft:#c9cff0;
+  --sans:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; --serif:"Newsreader",Georgia,serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.gut { padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1200px; margin:0 auto; }
+a { color:inherit; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+.brand { white-space:nowrap; display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:17px; letter-spacing:-0.02em; text-decoration:none; }
+.back { font-size:14.5px; color:var(--ink-2); text-decoration:none; }
+.back:hover { color:var(--ink); }
+article { max-width:44rem; margin:clamp(40px,7vw,88px) auto clamp(64px,9vw,120px); }
+.kicker { font:500 13px/1.4 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:0 0 18px; order:-1; }
+h1 { font-size:clamp(34px,5vw,54px); line-height:1.06; font-weight:400; letter-spacing:-0.03em; margin:0 0 20px; text-wrap:balance; }
+h2 { font-size:26px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px; }
+article p { margin:0 0 18px; color:var(--ink-2); }
+article p strong { color:var(--ink); font-weight:500; }
+article a { text-decoration:underline; text-decoration-color:var(--accent-soft); text-underline-offset:3px; text-decoration-thickness:1.5px; overflow-wrap:anywhere; }
+article a:hover { text-decoration-color:var(--accent); }
+.note { font-size:14.5px; color:var(--ink-3) !important; }
+.note em { font-style:normal; }
+.tbl { overflow-x:auto; margin:8px 0 14px; border-top:1px solid var(--ink); }
+table { width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-weight:500; font-size:13px; color:var(--ink-3); padding:12px 12px 10px 0; border-bottom:1px solid var(--line); vertical-align:bottom; }
+td { padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink-2); }
+td:first-child { color:var(--ink); }
+th:not(:first-child), td:not(:first-child) { text-align:right; }
+.fine { padding-block:20px 40px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-3); }
+.fine a { text-decoration:none; }
+
+.def { font-size:20px; line-height:1.55; color:var(--ink) !important; }
+.def strong { font-weight:600; }
+article ol, article ul { margin:0 0 18px; padding-left:22px; color:var(--ink-2); }
+article li { margin:0 0 10px; }
+article li strong { color:var(--ink); font-weight:500; }
+h3 { font-size:18px; font-weight:500; letter-spacing:-0.01em; margin:26px 0 6px; }
+table.words th:not(:first-child), table.words td:not(:first-child) { text-align:left; }
+table.words tr.us td { color:var(--ink); font-weight:500; }
+
+.byline { font:500 13px/1.5 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:-4px 0 22px; }
+.voice p { font-size:17.5px; }
+.wikibar { display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px 24px; padding:10px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); font:500 12.5px/1.6 var(--mono); color:var(--ink-3); letter-spacing:.01em; }
+.wikibar a { color:var(--ink-2); text-decoration:none; }
+.wikibar a:hover { color:var(--accent); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://kappalabs.co.uk/#org", "name": "Kappa Labs", "url": "https://kappalabs.co.uk/", "logo": "https://kappalabs.co.uk/apple-touch-icon.png", "email": "hello@kappalabs.co.uk", "description": "Independent assurance for AI evaluations. Kappa Labs finds where AI evaluations and their scoring go wrong, fixes them, and certifies the figure that can safely be quoted, with its margin.", "slogan": "Every AI score has a judge. We check the judge.", "knowsAbout": ["Meta-evaluation", "AI evaluation", "LLM-as-a-judge", "AI benchmark audits", "AI assurance", "Model risk management", "Inter-rater agreement"], "founder": {"@type": "Person", "name": "Sandeep Singh Rai", "url": "https://kappalabs.co.uk/team", "sameAs": ["https://orcid.org/0009-0001-3360-9205", "https://github.com/WatchTree-19", "https://www.linkedin.com/in/sandeeprai1"]}, "sameAs": ["https://github.com/WatchTree-19", "https://doi.org/10.5281/zenodo.23955858"]}, {"@type": "Article", "headline": "A history of meta-evaluation: how every field learned to check its checkers", "description": "Checking the checker is older than the word for it. A short history of meta-evaluation, from the auditors of ancient Athens to the AI judges that now score other AI systems.", "url": "https://kappalabs.co.uk/history-of-meta-evaluation", "author": {"@type": "Person", "name": "Sandeep Singh Rai", "url": "https://kappalabs.co.uk/team"}, "publisher": {"@id": "https://kappalabs.co.uk/#org"}, "about": "Meta-evaluation"}]}</script>
+<script defer src="/kl.js"></script>
+</head>
+<body>
+<div class="gut"><div class="wrap">
+<header class="nav"><a class="brand" href="./" aria-label="Kappa Labs home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>Kappa Labs</a><a class="back" href="meta-evaluation">&larr; What is meta-evaluation?</a></header>
+<div class="wikibar"><span><a href="wiki">The Meta-Evaluation Wiki</a> <span aria-hidden="true">&rsaquo;</span> A history of meta-evaluation: how every field learned to check its checkers</span><span>Last changed 15 November 2026 &middot; <a href="mailto:hello@kappalabs.co.uk?subject=Wiki%20edit%3A%20A%20history%20of%20meta-evaluation%3A%20how%20every%20field%20learned%20to%20check%20its%20checkers">Suggest an edit</a> &middot; <a href="https://github.com/WatchTree-19/kappalabs-site/commits/main/history-of-meta-evaluation.html">History</a></span></div>
+<main><article>
+<p class="kicker">History</p>
+<h1>A history of meta-evaluation: how every field learned to check its checkers</h1>
+<p class="byline">By Sandeep Singh Rai, Founder</p>
+<div class="voice">
+<p>Evaluation judges a system. Meta-evaluation judges the judging: the test, the raters, the measuring tool, so the people it serves are duly treated fairly.</p>
+<p>The accounts of this practice that I could find begin in the 1960s, when the word itself was coined. The practice is a great deal older, for wherever people have relied on a judgment or a measurement, sooner or later someone has asked whether the judge and the measure could themselves be trusted. What follows is a short history of that question, from the auditors of ancient Athens to the AI judges that now score other AI systems, and to my mind it shows that checking the checker is no novelty of our age, but an old duty arriving in a new field.</p>
+</div>
+<h2>The idea in one example</h2>
+<p>In 1990 NASA launched the Hubble Space Telescope with a main mirror that had passed its tests. The images came back blurred. The investigation found that the device used to test the mirror's shape had a lens set 1.3 millimetres out of place, so the mirror had been polished, very precisely, to the wrong curve. Two other tests had shown the error before launch; their results were set aside because the main test was trusted and they were not. The telescope was evaluated. Nobody checked the evaluation.</p>
+<h2>The history</h2>
+<h3>Athens, fourth century BC: the audit that could be challenged</h3>
+<p>The <em>Constitution of the Athenians</em>, attributed to Aristotle, describes how officials' accounts were checked. Auditors chosen by lot examined the accounts, and every official had to submit to them. The audit itself was open to challenge: for three days after an official passed, any citizen could bring a charge to a second board of examiners, and a charge they upheld went before a jury, whose decision was final.</p>
+<h3>India: accountants kept apart</h3>
+<p>The <em>Arthashastra</em>, a treatise on statecraft attributed to Kautilya and traditionally dated to around the third century BC (scholars now date its present form later), sets out rules for the office of accounts. Accountants presented their books sealed and were kept apart so that they could not confer. Their figures were checked against each other and against reports from informants, and the head of the office was fined for his own delays.</p>
+<h3>Rome: a question that outlived its context</h3>
+<p>"Who will guard the guards themselves?" comes from Juvenal's sixth <em>Satire</em>, written early in the second century AD. In the poem it is about a husband posting guards on his wife, and modern editors doubt Juvenal wrote the lines. It is often credited to Plato's <em>Republic</em>, which does not contain it. The phrase has lasted because the question applies to every system of checking.</p>
+<h3>China, 992 to 1037: checking the examiners</h3>
+<p>China's civil service examinations chose officials by written test, which made the examiners' fairness the weak point. Hiding candidates' names from the examiners is reported as early as 702, under the Tang. The Song dynasty made it the rule: papers were anonymous at the palace examination from 992, at the departmental examination from 1007 and in the prefectures from 1032. Clerks also recopied the papers so that an examiner could not recognise a candidate's handwriting, at the capital from 1015 and in the prefectures from 1037.</p>
+<h3>1875: instruments checked against better instruments</h3>
+<p>In 1875 seventeen nations signed the Metre Convention in Paris and founded the International Bureau of Weights and Measures. Its work was to keep the international prototypes of the metre and the kilogram and to calibrate each member state's national standards against them. A measurement could now be trusted because the instrument behind it had itself been checked, in a chain leading back to one reference.</p>
+<h3>1904 and 1960: measuring the measurers</h3>
+<p>In 1904 Charles Spearman showed that every test score carries error, that unreliable measures weaken the relationships observed between them, and that the reliability of a test can itself be estimated. In 1960 Jacob Cohen published kappa, a statistic for how far two raters agree once the agreement expected by chance is set aside. Kappa Labs takes its name from it. <a href="cohens-kappa">What is Cohen's kappa?</a></p>
+<h3>The 1960s: the word</h3>
+<p>Michael Scriven coined "meta-evaluation" in a report for the Urban Institute, which had commissioned evaluations of several housing projects that could not be compared with one another. His first article on it appeared in 1969. Daniel Stufflebeam and others developed the idea through the 1970s, and from 1981 the Joint Committee's standards for educational evaluation gave evaluators a reference point.</p>
+<h3>1986: Challenger</h3>
+<p>After the space shuttle Challenger was lost, the presidential commission found a serious flaw in the decision-making process that led to the launch. The engineers' doubts about the booster seals were not in the Flight Readiness Review's documentation and never reached the top level of the review. Richard Feynman, a member of the commission, found that estimates of the chance of failure ran from about 1 in 100 among working engineers to about 1 in 100,000 among managers. His appendix ends: "nature cannot be fooled."</p>
+<h3>2002: the auditors get an auditor</h3>
+<p>Until 2002 the auditors of American public companies regulated themselves. After the collapses of Enron, WorldCom and the audit firm Arthur Andersen, the Sarbanes-Oxley Act created the Public Company Accounting Oversight Board to oversee them from outside. It inspects every year the firms that audit more than 100 public companies, and the rest at least every three years.</p>
+<h3>2008 to 2011: the raters are rated</h3>
+<p>Credit ratings are scores that investors and regulators rely on. In January 2011 the majority of the Financial Crisis Inquiry Commission concluded that the failures of the credit rating agencies were central to the financial crisis. The Dodd-Frank Act of 2010 requires the Securities and Exchange Commission to examine each registered rating agency at least once a year and publish what it finds. Our own Quorum benchmark studies financial AI where the agencies themselves disagree. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819">Quorum benchmark</a></p>
+<h3>2015: science checks its own results</h3>
+<p>In 2015 a group of 270 researchers repeated 100 published psychology studies. Ninety-seven per cent of the originals had reported a statistically significant result. Thirty-six per cent of the repeats did. The finding gave lasting force to research on research: the study of how reliable published findings and the review behind them are.</p>
+<h3>2002 to today: AI</h3>
+<p>Machine translation met the question first. In 2002 the authors of BLEU, an automatic score for translations, checked it against human raters on three machine systems and two human translators and reported close agreement. Yearly competitions then ranked metrics by how well they matched human judgment, and in 2020 a study of that data found that a difference of one or two BLEU points matched a real improvement, as people judged it, only about half the time.</p>
+<p>In 2023 the practice of using one AI model to judge another's answers became widespread, and the question moved to the judge. Today an AI judge's verdict sits behind many of the scores that labs publish, companies buy on and regulators read. Our public audits apply the check to those scores: <a href="mt-bench">MT-Bench</a>, <a href="dices-350">DICES-350</a>, <a href="judgmentbench">JudgmentBench</a> and <a href="kensho-verdicts">Kensho VERDICTS</a>.</p>
+<h2>Why it matters now</h2>
+<div class="voice">
+<p>For most of history, those who were judged could at least see their judges, and in seeing them, could question them. I believe that is what changes with artificial intelligence, for the judging is now done at a scale no person reviews, by systems whose reasoning is not on show, and perhaps for the first time the people a score serves may not be able to ask whether they are being treated fairly, or even know that a judgment was made. It is for that reason that the checking of the checker, an old practice in every other field, becomes in this one a necessity.</p>
+</div>
+<p class="note"><em>Kappa Labs is an independent assurance firm for AI evaluations. Contact: hello@kappalabs.co.uk. For what we mean by the term, see <a href="meta-evaluation">What is meta-evaluation?</a></em></p>
+<h2>Sources</h2>
+<ul>
+<li>Aristotle (attributed), <em>Constitution of the Athenians</em>, parts 48 and 54.</li>
+<li>Kautilya, <em>Arthashastra</em>, Book 2, Chapter 7, translated by R. Shamasastry.</li>
+<li>Juvenal, <em>Satires</em> VI, lines 347 to 348.</li>
+<li>Michael Scriven, "Meta-Evaluation Revisited", <em>Journal of MultiDisciplinary Evaluation</em>, 2009. Steve Jacob and Séverin Affodegon, review of the meta-evaluation literature, <em>SpazioFilosofico</em>, 2015.</li>
+<li>C. Spearman, "The Proof and Measurement of Association between Two Things", <em>American Journal of Psychology</em> 15 (1904), 72 to 101.</li>
+<li>J. Cohen, "A Coefficient of Agreement for Nominal Scales", <em>Educational and Psychological Measurement</em> 20 (1960), 37 to 46.</li>
+<li><em>Report of the Presidential Commission on the Space Shuttle Challenger Accident</em> (1986), Chapter V and Appendix F.</li>
+<li>NASA, "Hubble's Mirror Flaw"; <em>The Hubble Space Telescope Optical Systems Failure Report</em> (the Allen report), NASA, November 1990.</li>
+<li>John W. Chaffee, <em>The Thorny Gates of Learning in Sung China</em>.</li>
+<li>Sarbanes-Oxley Act of 2002; SEC Historical Society, "Auditing the Auditors".</li>
+<li>Financial Crisis Inquiry Commission, final report, January 2011; Dodd-Frank Act of 2010.</li>
+<li>Open Science Collaboration, "Estimating the reproducibility of psychological science", <em>Science</em>, August 2015.</li>
+<li>Papineni, Roukos, Ward and Zhu, "BLEU: a Method for Automatic Evaluation of Machine Translation", ACL 2002. Mathur, Baldwin and Cohn, "Tangled up in BLEU", 2020.</li>
+</ul>
+</article></main>
+<footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
+</div></div>
+</body>
+</html>
