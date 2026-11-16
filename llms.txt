@@ -42,7 +42,7 @@ Key facts:
 - [What is a no-skill baseline?](https://kappalabs.co.uk/no-skill-baseline): The score a rule gets without doing the task; five public examples (77% on DICES-350, 80.9% on MT-Bench, 99.3% on JudgmentBench).
 - [What is attack success rate?](https://kappalabs.co.uk/attack-success-rate): The share of attacks judged successful; eight AI judges put it at 10% to 49% on the same 300 attempts, against a human 37%.
 
-## Public audits
+## Public investigations
 
 - [DICES-350 (Google Research)](https://kappalabs.co.uk/dices-350): All six AI graders call far fewer conversations unsafe than the experts do (6% to 32% against half) and catch only 11% to 44% of the ones the experts flag. Against the crowd, answering "safe" every time scores 77%.
 - [MT-Bench human judgments (LMSYS)](https://kappalabs.co.uk/mt-bench): On the cases behind the widely quoted 85% agreement, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them 80.9%; GPT-4 adds 3.7 points. The 85% leaves out 35% of comparisons.
