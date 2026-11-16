@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Public investigations of AI benchmarks · Kappa Labs</title>
+<meta name="description" content="Public investigations of widely used AI benchmarks. Every investigation starts from the data the authors released, so anyone can check the published figures.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect width='26' height='26' rx='6' fill='%23f4f4f0'/%3E%3Cg transform='translate(3.2 3.0) scale(0.76)'%3E%3Cpath transform='translate(2.0 23.0) scale(0.02778 -0.02778)' d='M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z' fill='%230f1012' stroke='%230f1012' stroke-width='10' stroke-linejoin='round'/%3E%3Ccircle cx='22.4' cy='21.0' r='2.2' fill='%232b45d4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="alternate" type="application/atom+xml" title="Kappa Labs field notes" href="feed.xml">
+<link rel="canonical" href="https://kappalabs.co.uk/public-investigations">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kappa Labs">
+<meta property="og:url" content="https://kappalabs.co.uk/public-investigations">
+<meta property="og:title" content="Kappa Labs public investigations">
+<meta property="og:description" content="Public investigations of widely used AI benchmarks. Every investigation starts from the data the authors released, so anyone can check the published figures.">
+<meta property="og:image" content="https://kappalabs.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
+<style>
+:root { --bg:#f4f4f0; --surface:#fff; --ink:#0f1012; --ink-2:#4b4f56; --ink-3:#868b93; --line:#e1e1da; --accent:#2b45d4; --accent-soft:#c9cff0;
+  --sans:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; --serif:"Newsreader",Georgia,serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.gut { padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1200px; margin:0 auto; }
+a { color:inherit; }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+.nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:18px; }
+.brand { white-space:nowrap; display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:17px; letter-spacing:-0.02em; text-decoration:none; }
+.back { font-size:14.5px; color:var(--ink-2); text-decoration:none; }
+.back:hover { color:var(--ink); }
+article { max-width:44rem; margin:clamp(40px,7vw,88px) auto clamp(64px,9vw,120px); }
+.kicker { font:500 13px/1.4 var(--mono); color:var(--ink-3); letter-spacing:.02em; margin:0 0 18px; order:-1; }
+h1 { font-size:clamp(34px,5vw,54px); line-height:1.06; font-weight:400; letter-spacing:-0.03em; margin:0 0 20px; text-wrap:balance; }
+h2 { font-size:26px; font-weight:500; letter-spacing:-0.02em; margin:48px 0 14px; }
+article p { margin:0 0 18px; color:var(--ink-2); }
+article p strong { color:var(--ink); font-weight:500; }
+article a { text-decoration:underline; text-decoration-color:var(--accent-soft); text-underline-offset:3px; text-decoration-thickness:1.5px; overflow-wrap:anywhere; }
+article a:hover { text-decoration-color:var(--accent); }
+.note { font-size:14.5px; color:var(--ink-3) !important; }
+.note em { font-style:normal; }
+.tbl { overflow-x:auto; margin:8px 0 14px; border-top:1px solid var(--ink); }
+table { width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-weight:500; font-size:13px; color:var(--ink-3); padding:12px 12px 10px 0; border-bottom:1px solid var(--line); vertical-align:bottom; }
+td { padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink-2); }
+td:first-child { color:var(--ink); }
+th:not(:first-child), td:not(:first-child) { text-align:right; }
+.fine { padding-block:20px 40px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-3); }
+.fine a { text-decoration:none; }
+
+article.notes { max-width:54rem; }
+.tagline { font-family:var(--serif); font-style:italic; font-size:clamp(22px,2.6vw,28px); line-height:1.25; color:var(--ink) !important; margin:-6px 0 22px !important; max-width:40rem; }
+.lede { font-size:18px; line-height:1.6; max-width:44rem; }
+.entries { margin-top:44px; border-top:1px solid var(--ink); }
+.entry { display:grid; grid-template-columns:150px minmax(0,1fr); gap:8px 32px; padding:30px 0 26px; border-bottom:1px solid var(--line); scroll-margin-top:24px; }
+.entry .when { font:500 13px/1.5 var(--mono); color:var(--ink-3); letter-spacing:.02em; padding-top:5px; }
+.entry .when b { display:block; font-weight:500; color:var(--accent); margin-top:4px; }
+.entry h2 { font-size:22px; line-height:1.25; margin:0 0 10px; text-wrap:balance; }
+.entry h2 a { text-decoration:none; }
+.entry p { margin:0 0 12px; }
+.entry p b { color:var(--ink); font-weight:500; }
+.entry .go { font-size:15px; margin:0; color:var(--ink) !important; }
+.entry .go a { font-weight:500; }
+@media (max-width:640px) { .entry { grid-template-columns:1fr; gap:6px; padding:26px 0 22px; } .entry .when { padding-top:0; } .entry .when b { display:inline; margin:0 0 0 10px; } .lede { font-size:17.5px; } }
+
+</style>
+<script defer src="/kl.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kappalabs.co.uk/#org","name":"Kappa Labs","url":"https://kappalabs.co.uk/","logo":"https://kappalabs.co.uk/apple-touch-icon.png"},{"@type":"Blog","@id":"https://kappalabs.co.uk/public-investigations#blog","name":"Kappa Labs public investigations","description":"Public investigations of widely used AI benchmarks. Every investigation starts from the data the authors released, so anyone can check the published figures.","url":"https://kappalabs.co.uk/public-investigations","publisher":{"@id":"https://kappalabs.co.uk/#org"},"about":{"@type":"DefinedTerm","name":"Meta-evaluation","url":"https://kappalabs.co.uk/meta-evaluation"},"blogPost":[{"@type":"BlogPosting","headline":"Kensho VERDICTS: how often finance experts agree an AI answer is right","description":"The published figures reproduce exactly. Three expert analysts gave the same verdict on 48% of 960 finance answers, and one in six has no verdict. The published accuracy counts those as not correct, so GPT-4o's error rate lies between 17.5% and 31.9%. Credit to Kensho for releasing every mark.","datePublished":"2026-11-13","url":"https://kappalabs.co.uk/kensho-verdicts","mainEntityOfPage":"https://kappalabs.co.uk/kensho-verdicts","author":{"@id":"https://kappalabs.co.uk/#org"},"publisher":{"@id":"https://kappalabs.co.uk/#org"},"image":"https://kappalabs.co.uk/og.png"},{"@type":"BlogPosting","headline":"JudgmentBench: the better answer is also the longer one","description":"All four headline numbers reproduce exactly. In 99.3% of the comparisons the better answer is also the longer one, so the released data cannot yet tell quality from length. The authors' own follow-up points the same way.","datePublished":"2026-11-08","url":"https://kappalabs.co.uk/judgmentbench","mainEntityOfPage":"https://kappalabs.co.uk/judgmentbench","author":{"@id":"https://kappalabs.co.uk/#org"},"publisher":{"@id":"https://kappalabs.co.uk/#org"},"image":"https://kappalabs.co.uk/og.png"},{"@type":"BlogPosting","headline":"MT-Bench: what \"over 80% agreement\" counts","description":"On the cases behind the widely quoted 85% agreement, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them 80.9%. GPT-4 adds 3.7 points. The 85% leaves out 35% of comparisons, including the 16% where GPT-4's verdict flipped when the answer order changed.","datePublished":"2026-11-08","url":"https://kappalabs.co.uk/mt-bench","mainEntityOfPage":"https://kappalabs.co.uk/mt-bench","author":{"@id":"https://kappalabs.co.uk/#org"},"publisher":{"@id":"https://kappalabs.co.uk/#org"},"image":"https://kappalabs.co.uk/og.png"},{"@type":"BlogPosting","headline":"DICES-350: whose safety label is the grader matching?","description":"All six AI graders call far fewer conversations unsafe than the experts do (6% to 32% against half), and catch only 11% to 44% of the ones the experts flag. Raw agreement flatters graders that rarely say \"unsafe\": against the crowd, answering \"safe\" every time scores 77%.","datePublished":"2026-11-08","url":"https://kappalabs.co.uk/dices-350","mainEntityOfPage":"https://kappalabs.co.uk/dices-350","author":{"@id":"https://kappalabs.co.uk/#org"},"publisher":{"@id":"https://kappalabs.co.uk/#org"},"image":"https://kappalabs.co.uk/og.png"}]}]}</script>
+</head>
+<body>
+<div class="gut"><div class="wrap">
+<header class="nav"><a class="brand" href="./" aria-label="Kappa Labs home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path transform="translate(2.0 23.0) scale(0.02778 -0.02778)" d="M-22 0Q-36 0 -36 10Q-36 21 -16 24L4 27Q26 30 34.5 37.5Q43 45 47 66L183 654Q188 675 183.0 682.0Q178 689 158 693L138 697Q125 700 125 708Q125 720 143 720H322Q337 720 337 709Q337 698 321 696L295 693Q273 691 265.0 682.5Q257 674 252 653L189 381Q187 373 191.5 370.0Q196 367 202 374L429 635Q472 686 436 693L417 697Q403 700 403 709Q403 720 419 720H590Q604 720 604 710Q604 698 588 697L568 695Q537 692 514.0 677.0Q491 662 457 623L300 444Q288 428 293 412L400 59Q405 43 411.5 36.0Q418 29 429 27L450 23Q462 20 462 12Q462 0 445 0H278Q264 0 264 10Q264 21 280 23L298 25Q337 30 325 74L244 353Q242 361 236.0 362.0Q230 363 225 357L187 314Q177 303 171.0 291.0Q165 279 161 264L116 67Q112 46 116.5 38.0Q121 30 141 27L165 23Q176 22 176 12Q176 0 158 0Z" fill="#0f1012" stroke="#0f1012" stroke-width="10" stroke-linejoin="round"/><circle cx="22.4" cy="21.0" r="2.2" fill="#2b45d4"/></svg>Kappa Labs</a><a class="back" href="./">&larr; Kappa Labs home</a></header>
+<main><article class="notes">
+<p class="kicker">Kappa Labs public investigations</p>
+<h1>Public investigations</h1>
+<p class="tagline">Check our work.</p>
+<p class="lede">We investigate widely used public benchmarks and publish the results. Every investigation starts from the data the authors released, so anyone can check the published figures. Newest first.</p>
+<div class="entries">
+<section class="entry" id="kensho-verdicts"><p class="when">13 Nov 2026<b>No. 4</b></p><div><h2><a href="kensho-verdicts">Kensho VERDICTS: how often finance experts agree an AI answer is right</a></h2><p>The published figures reproduce exactly. Three expert analysts gave the same verdict on <b>48%</b> of 960 finance answers, and <b>one in six</b> has no verdict. The published accuracy counts those as not correct, so GPT-4o's error rate lies between <b>17.5% and 31.9%</b>. Credit to Kensho for releasing every mark.</p><p class="go"><a href="kensho-verdicts">Read the investigation &rarr;</a></p></div></section>
+<section class="entry" id="judgmentbench"><p class="when">8 Nov 2026<b>No. 3</b></p><div><h2><a href="judgmentbench">JudgmentBench: the better answer is also the longer one</a></h2><p>All four headline numbers reproduce exactly. In <b>99.3%</b> of the comparisons the better answer is also the longer one, so the released data cannot yet tell quality from length. The authors' own follow-up points the same way.</p><p class="go"><a href="judgmentbench">Read the investigation &rarr;</a></p></div></section>
+<section class="entry" id="mt-bench"><p class="when">8 Nov 2026<b>No. 2</b></p><div><h2><a href="mt-bench">MT-Bench: what "over 80% agreement" counts</a></h2><p>On the cases behind the widely quoted 85% agreement, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them <b>80.9%</b>. GPT-4 adds 3.7 points. The 85% leaves out <b>35%</b> of comparisons, including the 16% where GPT-4's verdict flipped when the answer order changed.</p><p class="go"><a href="mt-bench">Read the investigation &rarr;</a></p></div></section>
+<section class="entry" id="dices-350"><p class="when">8 Nov 2026<b>No. 1</b></p><div><h2><a href="dices-350">DICES-350: whose safety label is the grader matching?</a></h2><p>All six AI graders call far fewer conversations unsafe than the experts do (<b>6% to 32%</b> against half), and catch only <b>11% to 44%</b> of the ones the experts flag. Raw agreement flatters graders that rarely say "unsafe": against the crowd, answering "safe" every time scores 77%.</p><p class="go"><a href="dices-350">Read the investigation &rarr;</a></p></div></section>
+</div>
+<p class="note" style="margin-top:28px"><em>Every investigation links to the data it started from. Shorter questions and findings are in our <a href="field-notes">field notes</a>. Follow new work by <a href="feed.xml">feed</a>. Contact: <a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></em></p>
+</article></main>
+<footer class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></footer>
+</div></div>
+</body>
+</html>

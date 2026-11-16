@@ -185,7 +185,7 @@ em.s { font-family: var(--serif); font-style: italic; font-weight: 400; letter-s
 .note { font-size: 12px; color: var(--ink-3); }
 @media (max-width: 900px) { .report { grid-template-columns: 1fr; } .rside { border-left: 0; border-top: 1px solid var(--line); } .row { grid-template-columns: 1fr auto; } .row .why { grid-column: 1 / -1; } }
 
-/* public audits */
+.all-inv { margin-top: 26px; font-size: 15.5px; } .all-inv a { font-weight: 500; color: var(--ink); text-decoration: none; } .all-inv a:hover { color: var(--accent); } /* public audits */
 .audits { margin-top: 56px; border-top: 1px solid var(--ink); }
 .audit { display: grid; grid-template-columns: 64px minmax(0, 2.2fr) minmax(0, 3fr) 150px; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); align-items: start; }
 .audit .no { font: 13px var(--mono); color: var(--ink-3); padding-top: 4px; }
@@ -280,7 +280,7 @@ footer { padding-block: 64px 48px; }
       <nav class="links" aria-label="Main">
         <a class="hide-m" href="#who">Who we work with</a>
         <a class="hide-m" href="#approach">Approach</a>
-        <a class="hide-m" href="#investigations">Public investigations</a>
+        <a class="hide-m" href="public-investigations">Public investigations</a>
         <a class="hide-m" href="#research">Research</a>
         <a class="hide-m" href="field-notes">Field notes</a>
         <a class="hide-m" href="wiki">Wiki</a>
@@ -397,16 +397,11 @@ footer { padding-block: 64px 48px; }
         <div><p class="lead">We investigate widely used public benchmarks and publish the results. Every investigation starts from the data the authors released, so anyone can check the published figures.</p></div>
       </div>
       <div class="audits">
+        <!-- the five most recent public investigations, newest first; the full list is public-investigations.html -->
         <div class="audit">
-          <span class="no">No. 1</span>
-          <div><h3><a class="alink" href="dices-350.html">DICES-350</a></h3><p class="src">Google Research &middot; 350 conversations, 123 raters each, plus expert labels</p></div>
-          <p class="res">All six AI graders call far fewer conversations unsafe than the experts do (<b>6% to 32%</b> against half), and catch only <b>11% to 44%</b> of the ones the experts flag. Raw agreement flatters graders that rarely say "unsafe": against the crowd, answering "safe" every time scores 77%. <a class="more" href="dices-350.html">Read the investigation &rarr;</a></p>
-          <span class="status st-pub">November 2026</span>
-        </div>
-        <div class="audit">
-          <span class="no">No. 2</span>
-          <div><h3><a class="alink" href="mt-bench.html">MT-Bench human judgments</a></h3><p class="src">LMSYS &middot; 3,355 human votes and 2,400 GPT-4 verdicts</p></div>
-          <p class="res">On the cases behind the widely quoted 85% agreement, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them <b>80.9%</b>; GPT-4 adds 3.7 points. The 85% leaves out <b>35%</b> of comparisons, including the 16% where GPT-4's verdict flipped when the answer order changed. <a class="more" href="mt-bench.html">Read the investigation &rarr;</a></p>
+          <span class="no">No. 4</span>
+          <div><h3><a class="alink" href="kensho-verdicts.html">Kensho VERDICTS</a></h3><p class="src">Kensho (S&amp;P Global) &middot; 960 finance answers, three expert marks each</p></div>
+          <p class="res">The published figures reproduce exactly. The three experts gave the same verdict on <b>48%</b> of finance answers, and <b>one in six</b> has no verdict. The published accuracy counts those as not correct, so the best model's error rate lies between <b>17.5% and 31.9%</b>. <a class="more" href="kensho-verdicts.html">Read the investigation &rarr;</a></p>
           <span class="status st-pub">November 2026</span>
         </div>
         <div class="audit">
@@ -416,9 +411,15 @@ footer { padding-block: 64px 48px; }
           <span class="status st-pub">November 2026</span>
         </div>
         <div class="audit">
-          <span class="no">No. 4</span>
-          <div><h3><a class="alink" href="kensho-verdicts.html">Kensho VERDICTS</a></h3><p class="src">Kensho (S&amp;P Global) &middot; 960 finance answers, three expert marks each</p></div>
-          <p class="res">The published figures reproduce exactly. The three experts gave the same verdict on <b>48%</b> of finance answers, and <b>one in six</b> has no verdict. The published accuracy counts those as not correct, so the best model's error rate lies between <b>17.5% and 31.9%</b>. <a class="more" href="kensho-verdicts.html">Read the investigation &rarr;</a></p>
+          <span class="no">No. 2</span>
+          <div><h3><a class="alink" href="mt-bench.html">MT-Bench human judgments</a></h3><p class="src">LMSYS &middot; 3,355 human votes and 2,400 GPT-4 verdicts</p></div>
+          <p class="res">On the cases behind the widely quoted 85% agreement, picking the chatbot the experts preferred on the other questions, without reading the answers, already matches them <b>80.9%</b>; GPT-4 adds 3.7 points. The 85% leaves out <b>35%</b> of comparisons, including the 16% where GPT-4's verdict flipped when the answer order changed. <a class="more" href="mt-bench.html">Read the investigation &rarr;</a></p>
+          <span class="status st-pub">November 2026</span>
+        </div>
+        <div class="audit">
+          <span class="no">No. 1</span>
+          <div><h3><a class="alink" href="dices-350.html">DICES-350</a></h3><p class="src">Google Research &middot; 350 conversations, 123 raters each, plus expert labels</p></div>
+          <p class="res">All six AI graders call far fewer conversations unsafe than the experts do (<b>6% to 32%</b> against half), and catch only <b>11% to 44%</b> of the ones the experts flag. Raw agreement flatters graders that rarely say "unsafe": against the crowd, answering "safe" every time scores 77%. <a class="more" href="dices-350.html">Read the investigation &rarr;</a></p>
           <span class="status st-pub">November 2026</span>
         </div>
         <div class="audit">
@@ -434,6 +435,7 @@ footer { padding-block: 64px 48px; }
           <span class="status st-rev">Case study</span>
         </div>
       </div>
+      <p class="all-inv"><a href="public-investigations">All public investigations &rarr;</a></p>
     </section>
   </div>
 </div>
@@ -534,7 +536,7 @@ footer { padding-block: 64px 48px; }
           <p style="color:var(--ink-2);font-size:14.5px;max-width:22rem">Independent assurance for AI evaluations.</p>
         </div>
         <div><h4>Company</h4><ul><li><a href="team">Team</a></li><li><a href="#who">Who we work with</a></li><li><a href="#approach">Approach</a></li><li><a href="#regulated">Regulated industries</a></li><li><a href="wiki">The Meta-Evaluation Wiki</a></li><li><a href="meta-evaluation">What is meta-evaluation?</a></li><li><a href="history-of-meta-evaluation">A history of meta-evaluation</a></li><li><a href="glossary">Glossary</a></li></ul></div>
-        <div><h4>Research</h4><ul><li><a href="#investigations">Public investigations</a></li><li><a href="field-notes">Field notes</a></li><li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7684405">Working paper</a></li><li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819">Quorum benchmark</a></li></ul></div>
+        <div><h4>Research</h4><ul><li><a href="public-investigations">Public investigations</a></li><li><a href="field-notes">Field notes</a></li><li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7684405">Working paper</a></li><li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7455819">Quorum benchmark</a></li></ul></div>
         <div><h4>Contact</h4><ul><li><a href="mailto:hello@kappalabs.co.uk">hello@kappalabs.co.uk</a></li></ul></div>
       </div>
       <div class="fine"><span>&copy; 2026 Kappa Labs. Kappa Labs is the trading name of Sandeep Singh Rai.</span></div>
