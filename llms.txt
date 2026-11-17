@@ -25,6 +25,17 @@ Key facts:
 - [Governments and safety institutes](https://kappalabs.co.uk/governments-and-safety-institutes): Independent review of the evaluations behind procurement, policy and public safety reporting.
 - [Universities and research groups](https://kappalabs.co.uk/universities): Replication of published judge and benchmark results, and help designing evaluations that hold up.
 
+## Rules and regulators
+
+Plain summaries of what each rule says about an AI figure, each with its source. Not legal advice.
+
+- [What the rules say about an AI figure](https://kappalabs.co.uk/regulation): Index of the UK, EU and US pages.
+- [PRA SS1/23 and AI judges](https://kappalabs.co.uk/pra-ss1-23): Independent validation of models at UK banks, vendor models and AI included.
+- [Backing an AI accuracy claim in the UK](https://kappalabs.co.uk/uk-ai-accuracy-claims): What the ASA, the CMA and the FCA expect of an accuracy claim.
+- [The EU AI Act and declared accuracy](https://kappalabs.co.uk/eu-ai-act-accuracy): Article 15 and the dates the high-risk rules apply.
+- [SR 26-2 and AI models at US banks](https://kappalabs.co.uk/sr-26-2-ai-models): The 2026 US model risk guidance, vendor models and generative AI.
+- [Backing an AI accuracy claim for the FTC](https://kappalabs.co.uk/ftc-ai-accuracy-claims): What recent FTC, Texas and SEC actions required of AI accuracy claims.
+
 ## Explainer
 
 - [The Meta-Evaluation Wiki](https://kappalabs.co.uk/wiki): A plain reference to meta-evaluation: what it is, where it comes from, the terms it uses and worked examples on public benchmarks. Anyone can suggest an edit.
